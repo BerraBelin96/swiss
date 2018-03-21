@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Admin Dashboard</div>
+                <h1>Welcome!</h1>
 
-                <div class="card-body">
+                
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -15,8 +14,13 @@
                     @endif
 
                     You are logged in as <strong>ADMIN</strong>
-                </div>
-            </div>
+                
+        </div>
+    </div>
+    <div class="row justify-content-center" id="tournament-btn">
+        <div class="col-md-8">
+            <button type="button" class="btn btn-secondary"><a href="#">Manage tournaments</a></button>
+            <button type="button" class="btn btn-secondary"><a href="#">Create a tournament</a></button>
         </div>
     </div>
 </div>
