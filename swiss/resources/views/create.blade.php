@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center text-center">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="POST" action="/addname" >
 
                 {{ csrf_field() }}
-                <div class="form-group">
+                <div class="form-group text-center">
                     <label for="players">Add players to your tournament:</label>
                 </div>
                 <div class="input-group col-md-10 mx-auto">
