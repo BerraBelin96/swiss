@@ -33,7 +33,7 @@
                         <tr>
                             <td class="col-md-2">{{ $player->name }}</td>
                             <td class="col-md-8"></td>
-                            <td class="col-md-2"><span aria-hidden="true">&times;</span></td>
+                            <td class="col-md-2"><a href="{{ URL::to('/delete/'.$player->id) }}"><span aria-hidden="true">&times;</span></a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -25,4 +25,11 @@ class PlayersController extends Controller
 
     	return back();
     }
+
+    public function delete($id)
+    {
+        $players = new Player;
+        Player::where('id', $id)->delete();
+        return back();
+    }
 }

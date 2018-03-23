@@ -29,6 +29,8 @@ Route::prefix('admin')->group(function() {
 
 //Route::get('/admin', 'PlayersController@index');
 
+Route::get('/delete/{id}', 'PlayersController@delete');
+
 Route::post('/addname', 'PlayersController@add');
 
 Route::post('/tournament', 'PlayersController@add');
