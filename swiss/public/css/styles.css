@@ -63,6 +63,7 @@ body {
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
   border-bottom: .25rem solid transparent;
+  display: inline;
 }
 
 .nav-masthead .nav-link:hover,
@@ -110,4 +111,15 @@ body {
 
 #tournament-btn{
   margin-top: 10%;
+}
+hr {
+    display: block;
+    height: 3px;
+    border: 0;
+    border-top: 1px solid #222;
+    margin: 1em 0;
+    padding: 0; 
+}
+.add-input{
+  width: 100%;
 }

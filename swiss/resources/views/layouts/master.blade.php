@@ -23,7 +23,7 @@
     <link href="/css/signin.css" rel="stylesheet">
   </head>
 
-  <body class="text-center">
+  <body>
 
     <div class="container d-flex h-100 p-3 mx-auto flex-column">
       @include ('layouts.nav')

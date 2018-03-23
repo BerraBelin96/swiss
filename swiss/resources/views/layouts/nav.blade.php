@@ -2,13 +2,12 @@
 	<div class="inner">
 		<h3 class="masthead-brand">WorldOfBoardGames</h3>
 		<nav class="nav nav-masthead justify-content-center">
-			<ul class="navbar-nav nav-link">
 			@guest
 			<a class="nav-link active" href="{{ url('/') }}">Home</a>
-			<li><a href="{{ route('admin.login') }}">Log in</a></li>
+			<a class="nav-link" href="{{ route('admin.login') }}">Log in</a>
 			@else
 				<li class="nav-item dropdown">
-					<a id="dropdownMenuLink" class="dropdown-toggle active" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+					<a id="dropdownMenuLink" class="dropdown-toggle active nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 					{{ Auth::user()->name }} <span class="caret"></span>
 					</a>
 

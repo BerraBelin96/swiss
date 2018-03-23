@@ -25,4 +25,12 @@ class AdminController extends Controller
     {
         return view('admin');
     }
+    public function createTournaments()
+    {
+        return view('create');
+    }
+    public function manageTournaments()
+    {
+        return view('manage');
+    }
 }
