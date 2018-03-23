@@ -8,7 +8,7 @@
 
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="players">Add players to your tournamnet:</label>
+                    <label for="players">Add players to your tournament:</label>
                 </div>
                 <div class="input-group col-md-10 mx-auto">
                     <input type="text" class="form-control" id="name" name="name"
