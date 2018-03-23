@@ -16,6 +16,7 @@
                         <button type="submit" class="btn btn-default">Add</button>
                     </span>
                 </div>
+                @include('layouts.errors')
             </form>
             <hr>           
         </div>
