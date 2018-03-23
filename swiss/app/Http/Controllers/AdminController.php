@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Player;
 
 class AdminController extends Controller
 {
@@ -27,7 +28,8 @@ class AdminController extends Controller
     }
     public function createTournaments()
     {
-        return view('create');
+        $players = Player::get();
+        return view('create', compact('players'));
     }
     public function manageTournaments()
     {
