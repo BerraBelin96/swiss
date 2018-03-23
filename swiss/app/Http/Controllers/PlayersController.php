@@ -16,7 +16,7 @@ class PlayersController extends Controller
 
     public function add()
     {
-    	//dd(request()->all());
+    	//Lägger till namn i databasen
 
     	$players = new Player;
     	$this->validate(request(), ['name' => 'required']);
@@ -28,6 +28,8 @@ class PlayersController extends Controller
 
     public function delete($id)
     {
+        //Tar bort namn från databasen
+
         $players = new Player;
         Player::where('id', $id)->delete();
         return back();
