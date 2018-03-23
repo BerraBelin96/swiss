@@ -23,8 +23,8 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if (empty($players))
-            <p class="text-center">There are currently no players!</p>
+            @if (!count($players))
+                <p class="text-center">There are currently no players!</p>
             @endif
             {{-- @foreach($players as $player)   
                 @endforeach --}}  
