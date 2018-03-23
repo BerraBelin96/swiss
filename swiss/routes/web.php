@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', 'PlayersController@index');
+
+Route::post('/addname', 'PlayersController@add');
+
+Route::post('/tournament', 'PlayersController@add');
