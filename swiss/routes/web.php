@@ -26,3 +26,9 @@ Route::prefix('admin')->group(function() {
 	Route::get('/create', 'AdminController@createTournaments')->name('admin.create');
 	Route::get('/manage', 'AdminController@manageTournaments')->name('admin.manage');
 });
+
+Route::get('/admin', 'PlayersController@index');
+
+Route::post('/addname', 'PlayersController@add');
+
+Route::post('/tournament', 'PlayersController@add');
