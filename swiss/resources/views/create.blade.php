@@ -15,6 +15,9 @@
                     placeholder="Name"> <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">Add</button>
                     </span>
+                    @if (count($players))
+                    <button class="btn btn-default">Save</button>
+            @endif
                 </div>
                 @include('layouts.errors')
             </form>

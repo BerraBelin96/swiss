@@ -28,7 +28,7 @@ class AdminController extends Controller
     }
     public function createTournaments()
     {
-        $players = Player::get();
+        $players = Player::latest()->get();
         return view('create', compact('players'));
     }
     public function manageTournaments()
