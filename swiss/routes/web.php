@@ -34,3 +34,5 @@ Route::get('/delete/{id}', 'PlayersController@delete');
 Route::post('/addname', 'PlayersController@add');
 
 Route::post('/tournament', 'PlayersController@add');
+
+Route::get('/startTournament', 'CurrentGameController@index');
