@@ -41,6 +41,6 @@ class CurrentGameController extends Controller
     		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2]);
     	}
     	
-    	dd($playerIds1, $playerIds2, $pi1, $pi2);
+    	return view('admin/current');
     }
 }

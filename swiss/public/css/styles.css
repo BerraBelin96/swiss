@@ -123,3 +123,7 @@ hr {
 .add-input{
   width: 100%;
 }
+.currentMatches{
+  display: inline-block;
+  border: 1px solid black;
+}

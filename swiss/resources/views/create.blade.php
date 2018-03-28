@@ -16,7 +16,7 @@
                         <button type="submit" class="btn btn-default">Add</button>
                     </span>
                     @if (count($players) >= 4)
-                    <button class="btn btn-default">Save</button>
+                    <button class="btn btn-default"><a href="{{ URL::to('/startTournament') }}">Save</a></button>
             @endif
                 </div>
                 @include('layouts.errors')
