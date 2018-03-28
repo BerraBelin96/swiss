@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Player;
+use App\CurrentGame;
 
 class AdminController extends Controller
 {
@@ -34,5 +35,10 @@ class AdminController extends Controller
     public function manageTournaments()
     {
         return view('manage');
+    }
+    public function currentTournament()
+    {
+        $CurrentGame = CurrentGame::get();
+        return view('current', compact('CurrentGame'));
     }
 }
