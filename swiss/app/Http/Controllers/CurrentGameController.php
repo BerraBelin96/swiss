@@ -21,7 +21,7 @@ class CurrentGameController extends Controller
     	
     	$playerIds1 = array_slice($playerIds, $piCount/2);
     	$playerIds2 = array_slice($playerIds, 0, $piCount/2);
-    	
+
     	$pi1Count = count($playerIds1);
     	for ($row = 0; $row < $pi1Count; $row++) {
     		if (isset($playerIds1[$row])) {
@@ -37,7 +37,7 @@ class CurrentGameController extends Controller
     		else {
     			$pi2 = 0;
     		}
-
+    		
     		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2]);
     	}
     	

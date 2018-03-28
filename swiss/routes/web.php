@@ -36,3 +36,7 @@ Route::post('/addname', 'PlayersController@add');
 Route::post('/tournament', 'PlayersController@add');
 
 Route::get('/startTournament', 'CurrentGameController@index');
+
+Route::get('/formTest', 'PlayersController@formTest');
+Route::post('/playerUpdate', 'PlayersController@update');
+Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
