@@ -35,4 +35,8 @@ class AdminController extends Controller
     {
         return view('manage');
     }
+    public function currentTournament()
+    {
+        return view('current');
+    }
 }
