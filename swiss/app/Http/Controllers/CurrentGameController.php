@@ -8,7 +8,7 @@ use App\CurrentGame;
 
 class CurrentGameController extends Controller
 {
-     public function index()
+    public function index()
     {
     	$players = Player::get();
     	
@@ -41,6 +41,11 @@ class CurrentGameController extends Controller
     		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2]);
     	}
     	
-    	return view('admin/current');
+    	return redirect()->route('admin.current');
+    }
+
+    public function nextGame()
+    {
+
     }
 }
