@@ -18,6 +18,7 @@ class CreatePlayersTable extends Migration
             $table->string('name');
             $table->integer('wins')->default(0);
             $table->integer('losses')->default(0);
+            $table->text('met')->nullable();
             $table->timestamps();
         });
     }

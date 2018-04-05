@@ -38,7 +38,18 @@ Route::post('/addname', 'PlayersController@add');
 Route::post('/tournament', 'PlayersController@add');
 
 Route::get('/startTournament', 'CurrentGameController@index');
+Route::get('/nextGame', 'CurrentGameController@nextGame');
 
 Route::get('/formTest', 'PlayersController@formTest');
 Route::post('/playerUpdate', 'PlayersController@update');
 Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
+
+
+
+
+// vvv DevHelperController vvv 
+Route::prefix('dev')->group(function() {
+	Route::get('/', 'DevHelperController@index');
+	Route::get('/addPlayers/{amount}', 'DevHelperController@addPlayers');
+	Route::get('/empty/{table}', 'DevHelperController@empty');
+});
