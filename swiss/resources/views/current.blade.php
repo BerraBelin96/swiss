@@ -24,9 +24,11 @@
 						Lose
 					</label>
 					</div>
+
 				</div>
 					<hr>
 			    @endforeach
+			    <button type="submit" class="btn btn-default">Add</button>
 			</form>
 		</div>
 
