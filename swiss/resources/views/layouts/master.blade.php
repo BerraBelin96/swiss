@@ -26,7 +26,7 @@
 
   <body>
 
-    <div class="container d-flex h-50 p-3 mx-auto flex-column">
+    <div class="container d-flex h-75 p-3 mx-auto flex-column">
       @include ('layouts.nav')
       <main role="main" class="inner cover">
         @yield ('content')

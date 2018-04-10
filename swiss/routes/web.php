@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function() {
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
-	Route::get('/create', 'AdminController@createTounarments')->name('admin.create');
+	Route::get('/create', 'AdminController@createTournaments')->name('admin.create');
 	Route::get('/manage', 'AdminController@manageTournaments')->name('admin.manage');
 	Route::get('/current', 'AdminController@currentTournament')->name('admin.current');
 	//Route::get('/startTournament', 'CurrentGameController@index')->name('admin.startTournament');

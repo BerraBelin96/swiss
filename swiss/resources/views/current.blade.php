@@ -37,16 +37,11 @@
 		<div class="col-md-8">
 			<h1 class="text-center">Current tournament</h1>
 			<hr>
-			<div class="text-center">
+			<div class="text-center row">
 				@foreach ($CurrentGame as $Current)
-				<table class="w-40 currentMatches"> 
-					<tbody>
-						<tr>
-							<td class="">{{$Current->playerOne}}</td>
-							<td class="">VS</td>
-							<td class="">{{$Current->playerTwo}}</td>
-						</tr>
-					</tbody>
+				<div class="col-md-6">
+					<p>{{ $Current->playerOne }} vs {{ $Current->playerTwo }}</p>
+				</div>
 				</table>
 				@endforeach
 			</div>
