@@ -49,14 +49,10 @@ class CurrentGameController extends Controller
 
     public function nextGame()
     {
-        $rand = rand(1, 2);
-        if ($rand == 1) {
-            $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
-        }
-        else {
-            $players = Player::orderBy('wins', 'asc')->orderBy('losses', 'desc')->get();
-        }
+        // dd(request()->all());
 
+        $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
+        
     	foreach ($players as $player) {
     		$playerIds[] = $player->id;
     	}
@@ -65,13 +61,46 @@ class CurrentGameController extends Controller
     	$playerId = $playersArray[0]["id"];
     	$playerMet = $playersArray[0]["met"];
     	$player2Id = $playersArray[3]["id"];
+    	
 
-    	// $idTest = "1,2";
-    	// $contains = str_contains($idTest, ',');
+        $playersArrayStartCount = count($playersArray);
+        
 
-    	// reset($playerIds);
-    	// $player1Key = key($playerIds);
-		// $player2Key = key(array_slice($playerIds,1));
+        $playersArrayCount = count($playersArray);
+        if ($playersArrayCount & 1 ) {
+            print "It's odd";
+
+            $i = 0;
+            while (!isset($waitPlayer)) {
+                
+                foreach ($playersArray as $player) {
+                    if (str_contains($player["wait"], $i)) {
+                        $playersNotWaited[] = $player;
+                    }
+
+                }
+                if (isset($playersNotWaited)) {
+                    $waitPlayer = end($playersNotWaited);
+                }
+                else {
+                    $i++;
+                }
+            }
+
+        }
+
+        dd("vv playersNotWaited vv", $playersNotWaited, "vv waitPlayer vv", $waitPlayer, "vv players vv", $players, "vv playersArray vv", $playersArray, "vv playerIds vv", $playerIds);
+
+        /*
+        
+        dd(request()->all());
+        str_contains($playersArray[$player1Key]["met"], '|')
+        echo end($people);
+        array_count_values($array)
+        
+        */
+
+
 
     	$playersArrayCount = count($playersArray);
 		if ($playersArrayCount & 1 ) {
@@ -81,8 +110,6 @@ class CurrentGameController extends Controller
 		  	$last_key = key($playersArray);
 		  	$playersArray[$last_key]["met"] = 0;
 		}
-
-        $playersArrayStartCount = count($playersArray);
 
     	while (count($playersArray) > 0) {
 
@@ -129,6 +156,9 @@ class CurrentGameController extends Controller
 	    		unset($playersArray[$player2Key]);
 	    	}
     	}
+
+
+        dd($players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
 
         $playersArray2 = $players->toArray();
         if ($playersArrayCount & 1 ) {
