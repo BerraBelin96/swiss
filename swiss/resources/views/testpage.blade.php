@@ -33,7 +33,7 @@
 
 
 
-<form method="POST" action="/playerUpdate">
+{{-- <form method="POST" action="/playerUpdate">
     {{ csrf_field() }}
     <div class="form-group text-center">
         <label for="title">Select witch players won/losst:</label>
@@ -55,4 +55,37 @@
     </div>
     <button type="submit" class="btn btn-default">Add</button>
     @include('layouts.errors')
+</form> --}}
+
+
+<form method="POST" action="/playerUpdate">
+    {{ csrf_field() }}
+    @foreach ($players as $player)
+    <div class="input-group">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label" for="">
+            {{ $player->name }} {{ $player->id }}
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="wins[]" id="wins" value="{{ $player->id }}">
+            <label class="form-check-label" for="won">
+                Win
+        </label>
+        </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="losses[]" id="losses" value="{{ $player->id }}">
+        <label class="form-check-label" for="lost">
+            Lose
+        </label>
+        </div>
+
+    </div>
+        <hr>
+    @endforeach
+    <button type="submit" class="btn btn-default">Add</button>
 </form>
+
+
+{{-- <input class="form-check-input" type="checkbox" id="losses" name="losses[]" value="{{ $player->id }}"> --}}
+{{-- <input class="form-check-input" type="checkbox" id="losses" name="losses[]" value="{{ $player->id }}"> --}}

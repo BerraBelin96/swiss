@@ -49,7 +49,7 @@ class CurrentGameController extends Controller
 
     public function nextGame()
     {
-
+        // dd(request()->all());
         // $rand = rand(1, 2);
         // if ($rand == 1) {
             $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();

@@ -5,6 +5,7 @@
 		<div id="mySidenav" class="sidenav">
 			{{-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --}}
 			<form method="POST" action="/playerUpdate">
+				{{ csrf_field() }}
 				@foreach ($players as $player)
 				<div class="input-group">
 					<div class="form-check form-check-inline">
