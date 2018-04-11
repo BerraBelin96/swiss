@@ -49,6 +49,7 @@ class CurrentGameController extends Controller
 
     public function nextGame()
     {
+
         // $rand = rand(1, 2);
         // if ($rand == 1) {
             $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
@@ -61,73 +62,18 @@ class CurrentGameController extends Controller
     		$playerIds[] = $player->id;
     	}
 
+    	$idTest = "1,2";
+    	$contains = str_contains($idTest, ',');
+
     	$playersArray = $players->toArray();
     	$playerId = $playersArray[0]["id"];
     	$playerMet = $playersArray[0]["met"];
     	$player2Id = $playersArray[3]["id"];
-
-    	// $idTest = "1,2";
-    	// $contains = str_contains($idTest, ',');
-
-    	// reset($playerIds);
-    	// $player1Key = key($playerIds);
-		// $player2Key = key(array_slice($playerIds,1));
-
-    	$playersArrayCount = count($playersArray);
-		if ($playersArrayCount & 1 ) {
-			print "It's odd";
-		  	$playersArray[]["id"] = 0;
-		  	end($playersArray);
-		  	$last_key = key($playersArray);
-		  	$playersArray[$last_key]["met"] = 0;
-		}
-
-        $playersArrayStartCount = count($playersArray);
-
-    	while (count($playersArray) > 0) {
-
-			$keys = array_keys($playersArray);
-			$player1Key = $keys[0];
-			$i = 1;
-			$player2Key = $keys[$i];
-            
-            //$player1Met = $playersArray[$player1Key]["met"];
-            $player1MetContains = str_contains($playersArray[$player1Key]["met"], '|');
-            if ($player1MetContains) {
-                $player1Met = explode("|", $playersArray[$player1Key]["met"]);
-                //$player1Met = $playersArray[$player1Key]["met"];
-                //$player1Met[] = $playersArray[$player1Key]["met"];
-                //$ifMet = in_array($playersArray[$player2Key]["id"], $player1Met);
-            }
-            else {
-                $player1Met[] = $playersArray[$player1Key]["met"];
-                //$ifMet = $playersArray[$player1Key]["met"] == $playersArray[$player2Key]["id"];
-            }
-            
-            // if (in_array($playersArray[$player2Key]["id"], $player1Met)) {
-            //     echo "Got Irix" . $playersArray[$player1Key]["id"] . " " . $playersArray[$player2Key]["id"];
-            //     $test = in_array($playersArray[$player2Key]["id"], $player1Met);
-            // }
-
-	    	if (in_array($playersArray[$player2Key]["id"], $player1Met)) {
-	    		while (in_array($playersArray[$player2Key]["id"], $player1Met)) {
-                    if (!isset($keys[$i])) {
-                        break 1;
-                    }
-                    $player2Key = $keys[$i];
-                    $i++;
-	    		}
-	    		$player1PlayersArray[] = $playersArray[$player1Key]["id"];
-	    		$player2PlayersArray[] = $playersArray[$player2Key]["id"];
-	    		unset($playersArray[$player1Key]);
-	    		unset($playersArray[$player2Key]);
-	    	}
-	    	else{
-	    		$player1PlayersArray[] = $playersArray[$player1Key]["id"];
-	    		$player2PlayersArray[] = $playersArray[$player2Key]["id"];
-	    		unset($playersArray[$player1Key]);
-	    		unset($playersArray[$player2Key]);
-	    	}
+    	if ($playerMet == $player2Id) {
+    		$say = "Met = True";
+    	}
+    	else{
+    		$say = "Met = False";
     	}
 
         $playersArray2 = $players->toArray();
@@ -172,10 +118,11 @@ class CurrentGameController extends Controller
     	// }
 
 
+  		// $result = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
+		// $result = $result->toArray();
+		// $resultName = $result[0]["name"];
 
-
-
-    	// dd($player1PlayersArray, $player2PlayersArray, $say, $playerId, $playerMet, $playersArray, $players, $playerIds, $contains);
+    	dd($test, $say, $playerId, $playerMet, $playersArray, $players, $playerIds, $contains);
     	
     	$piCount = count($playerIds);
     	$piCountHalf = ceil($piCount/2);

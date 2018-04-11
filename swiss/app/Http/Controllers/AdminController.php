@@ -38,7 +38,9 @@ class AdminController extends Controller
     }
     public function currentTournament()
     {
-        $CurrentGame = CurrentGame::get();
-        return view('current', compact('CurrentGame'));
+        $players = Player::get();
+        $CurrentGame = CurrentGame::
+                                get();
+        return view('current', compact('CurrentGame', 'players'));
     }
 }

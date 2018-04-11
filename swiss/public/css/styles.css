@@ -127,3 +127,10 @@ hr {
   display: inline-block;
   border: 1px solid black;
 }
+.sidenav{
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin-right: 5%;
+  margin-top: 8%
+}
