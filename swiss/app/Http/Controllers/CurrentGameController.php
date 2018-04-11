@@ -49,13 +49,13 @@ class CurrentGameController extends Controller
 
     public function nextGame()
     {
-        $rand = rand(1, 2);
-        if ($rand == 1) {
+        // $rand = rand(1, 2);
+        // if ($rand == 1) {
             $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
-        }
-        else {
-            $players = Player::orderBy('wins', 'asc')->orderBy('losses', 'desc')->get();
-        }
+        // }
+        // else {
+            // $players = Player::orderBy('wins', 'asc')->orderBy('losses', 'desc')->get();
+        // }
 
     	foreach ($players as $player) {
     		$playerIds[] = $player->id;
@@ -130,9 +130,31 @@ class CurrentGameController extends Controller
 	    	}
     	}
 
+        $playersArray2 = $players->toArray();
+        if ($playersArrayCount & 1 ) {
+            print "It's odd";
+            $playersArray2[]["id"] = 0;
+            end($playersArray2);
+            $last_key = key($playersArray2);
+            $playersArray2[$last_key]["met"] = 0;
+        }
+
+        $test = $playersArray2[0]["met"] . "|" . "9";
+
+        foreach ($player1PlayersArray as $key => $value) {
+            Player::where('id', $player1PlayersArray[$key])->update(['met' => $playersArray2[$player1PlayersArray[$key]]["met"] . "|" . $player2PlayersArray[$key]]);
+            Player::where('id', $player2PlayersArray[$key])->update(['met' => $playersArray2[$player2PlayersArray[$key]]["met"] . "|" . $player1PlayersArray[$key]]);
+        }
+
     	// unset($playerIds[$key]);
-    	dd($rand, $players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
+    	dd($test, $rand, $players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
     	// dd($player1PlayersArray, $player2PlayersArray, $playersArray, $players, $playerIds);
+
+        Player::where('id', $pi1)->update(['met' => $pi2]);
+        Player::where('id', $pi2)->update(['met' => $pi1]);
+
+        Player::where('id', $pi1)->update(['met' => $playersArray2[$pi1]["met"] . "|" . $pi2]);
+        Player::where('id', $pi2)->update(['met' => $playersArray2[$pi2]["met"] . "|" . $pi1]);
 
     	// foreach ($playersArray as $key => $value) {
     	// 	$player1Key = $key;
