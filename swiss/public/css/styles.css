@@ -138,10 +138,9 @@ hr {
   right: 0;
   position: fixed;
 }
-/*.collapse{
+.collapse{
   margin-top: 10%;
-}*/
+}
 .navbar-toggler{
   margin-top: 10%;
-  margin-left: auto;
 }
