@@ -11,6 +11,8 @@ class CurrentGameController extends Controller
     public function index()
     {
     	$players = Player::get();
+        // !!! Skriv om funktionen så detta funkar !!!
+        // $playersArray = $players->toArray();
     	
     	foreach ($players as $player) {
     		$playerIds[] = $player->id;
@@ -25,24 +27,37 @@ class CurrentGameController extends Controller
     	$pi1Count = count($playerIds1);
     	for ($row = 0; $row < $pi1Count; $row++) {
     		if (isset($playerIds1[$row])) {
-    			$pi1 = $playerIds1[$row];
-    		}
-    		else {
-    			$pi1 = 0;
-    		}
+                $pi1 = $playerIds1[$row];
+            }
+            else {
+                $pi1 = 0;
+                Player::where('id', $playerIds2[$row])->update(['wait' => 1]);
+            }
 
-    		if (isset($playerIds2[$row])) {
-    			$pi2 = $playerIds2[$row];
-    		}
-    		else {
-    			$pi2 = 0;
-    		}
+            if (isset($playerIds2[$row])) {
+                $pi2 = $playerIds2[$row];
+            }
+            else {
+                $pi2 = 0;
+                Player::where('id', $playerIds1[$row])->update(['wait' => 1]);
+            }
     		
     		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2]);
 
     		Player::where('id', $pi1)->update(['met' => $pi2]);
     		Player::where('id', $pi2)->update(['met' => $pi1]);
     	}
+
+        // !!! Skriv om funktionen så detta funkar !!!
+        //$piCount = count($playerIds);
+        // $playersArrayCount = count($playersArray);
+        // if ($playersArrayCount & 1 ) {
+        //     foreach ($playersArrayCount as $key => $value) {
+        //         if ($value["id"] == $pi1) {
+        //             Player::where('id', $value["id"])->update(['wait' => $value["wait"]+1]);
+        //         }
+        //     }
+        // }
     	
     	return redirect()->route('admin.current');
     }
@@ -62,6 +77,27 @@ class CurrentGameController extends Controller
     	$playerMet = $playersArray[0]["met"];
     	$player2Id = $playersArray[3]["id"];
     	
+        $playersArrayStartCount = count($playersArray);
+        foreach ($playersArray as $key => $value) {
+            
+            $valueMetContains = str_contains($value["met"], '|');
+            if ($valueMetContains) {
+                $valueMet = explode("|", $value["met"]);
+            }
+            else {
+                $valueMet[] = $value["met"];
+            }
+            if ($playersArrayStartCount & 1 ) {
+                if (count($valueMet) >= $playersArrayStartCount) {
+                    $playersArray[$key]["met"] = end($valueMet);
+                }
+            }
+            else {
+                if (count($valueMet) >= $playersArrayStartCount-1) {
+                    $playersArray[$key]["met"] = end($valueMet);
+                }
+            }
+        }
 
         //Här bestäms vem som ska vänta den här rundan om det är ett udda antal spelare.
         $playersArrayCount = count($playersArray);
@@ -88,7 +124,6 @@ class CurrentGameController extends Controller
                     $i++;
                 }
             }
-
         }
 
     	while (count($playersArray) > 0) {
@@ -109,7 +144,6 @@ class CurrentGameController extends Controller
 	    	if (in_array($playersArray[$player2Key]["id"], $player1Met)) {
 	    		while (in_array($playersArray[$player2Key]["id"], $player1Met)) {
                     if (!isset($keys[$i])) {
-                        //$playersArray[$player1Key]["met"] = $player1Met[count($player1Met)-2];
                         break 1;
                     }
                     $player2Key = $keys[$i];
@@ -128,7 +162,7 @@ class CurrentGameController extends Controller
 	    	}
     	}
 
-        // dd($waitPlayer, $players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
+        //dd($playersArrayStartCount, $waitPlayer, $players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
 
         foreach ($player1PlayersArray as $key => $value) {
             Player::where('id', $player1PlayersArray[$key]["id"])->update(['met' => $player1PlayersArray[$key]["met"] . "|" . $player2PlayersArray[$key]["id"]]);
@@ -140,7 +174,7 @@ class CurrentGameController extends Controller
             Player::where('id', $waitPlayer["id"])->update(['wait' => $waitPlayer["wait"]+1]);
         }
 
-        
+
         CurrentGame::truncate();
         
         foreach ($player1PlayersArray as $key => $value) {
@@ -151,7 +185,7 @@ class CurrentGameController extends Controller
             CurrentGame::create(['playerOne' => $waitPlayer["id"],'playerTwo' => "0"]);
         }
 
-    	dd($players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
+    	// dd($players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
     	
     	return redirect()->route('admin.current');
     }
