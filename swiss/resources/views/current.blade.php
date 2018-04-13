@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
-	<div class="row justify-content-center">
-		<div id="mySidenav" class="sidenav">
+	<div>
+		<div id="navbarToggleExternalContent" class="col-md-3 right">
 			{{-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --}}
 			<form method="POST" action="/playerUpdate">
 				@foreach ($players as $player)
@@ -13,24 +13,28 @@
 						</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" name="wins[]" id="wins" value="{{ $player->id }}">
+						<input class="form-check-input checkbox" type="checkbox" name="wins[]" id="wins" value="{{ $player->id }}">
 						<label class="form-check-label" for="">
 							Win
 					</label>
 					</div>
 					<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" name="losses[]" id="losses" value="{{ $player->id }}">
+					<input class="form-check-input checkbox" type="checkbox" name="losses[]" id="losses" value="{{ $player->id }}">
 					<label class="form-check-label" for="">
 						Lose
 					</label>
 					</div>
 
 				</div>
-					<hr>
+					<br>
 			    @endforeach
 			    <button type="submit" class="btn btn-default">Add</button>
 			</form>
 		</div>
+
+		<button class="navbar-toggler" id="button" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      	<span>open</span>
+    	</button>
 
 		<!-- Use any element to open the sidenav -->
 		{{-- <span onclick="openNav()">open</span> --}}
