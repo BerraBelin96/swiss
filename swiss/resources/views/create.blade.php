@@ -30,8 +30,13 @@
                 <p class="text-center">There are currently no players!</p>
             @endif
             {{-- @foreach($players as $player)   
-                @endforeach --}}  
-                <table class="col-md-10 mx-auto">
+                @endforeach --}}
+                @if (count($players))
+                <div class="row justify-content-center">
+                    <span>Total: {{ $players->count() }}</span>
+                </div>
+                @endif
+                <table class="row col-md-10 mx-auto">
                     <tbody>
                     @foreach ($players as $player)
                         <tr>
