@@ -127,10 +127,21 @@ hr {
   display: inline-block;
   border: 1px solid black;
 }
-.sidenav{
-  position: fixed;
-  right: 0;
+.checkbox{
+  margin-left: 0rem;
+  margin-top: 0.5rem;
+}
+.right{
+  float: right;
   top: 0;
-  margin-right: 5%;
-  margin-top: 8%
+  margin-top: 10%;
+  right: 0;
+  position: fixed;
+}
+/*.collapse{
+  margin-top: 10%;
+}*/
+.navbar-toggler{
+  margin-top: 10%;
+  margin-left: auto;
 }
