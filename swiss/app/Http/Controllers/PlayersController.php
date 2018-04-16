@@ -77,8 +77,8 @@ class PlayersController extends Controller
             Player::where('id', $losseId)->update(['losses' => $losseNum]);
         }
 
-        dd(request(['wins']),request(['losses']),$players,$winIds);
+        //dd(request(['wins']),request(['losses']),$players,$winIds);
         
-        return back();
+        return redirect()->route('nextGame');
     }
 }
