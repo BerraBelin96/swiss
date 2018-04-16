@@ -47,7 +47,7 @@
 			<div class="text-center row">
 				@foreach ($CurrentGame as $Current)
 				<div class="col-md-6">
-					<p>{{ $Current->playerOne }} vs {{ $Current->playerTwo }}</p>
+					<p>{{ $Current->p1_name }} vs {{ $Current->p2_name }}</p>
 				</div>
 				</table>
 				@endforeach
