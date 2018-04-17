@@ -41,7 +41,7 @@ class AdminController extends Controller
         $players = Player::get();
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
-                                    ->select('p1.name as p1_name', 'p2.name as p2_name')
+                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo')
                                     ->get();
         // $CurrentGame = CurrentGame::selectRaw("SELECT
         //     cg.playerOne, cg.playerTwo

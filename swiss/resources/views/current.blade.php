@@ -10,7 +10,7 @@
 				<div class="input-group">
 					<div class="form-check form-check-inline">
 						<label class="form-check-label" for="">
-						{{ $player->name }}
+						{{ $player->id }}. {{ $player->name }}
 						</label>
 					</div>
 					<div class="form-check form-check-inline">
@@ -47,7 +47,7 @@
 			<div class="text-center row">
 				@foreach ($CurrentGame as $Current)
 				<div class="col-md-6">
-					<p>{{ $Current->p1_name }} vs {{ $Current->p2_name }}</p>
+					<p>{{ $Current->playerOne }}. {{ $Current->p1_name }} vs {{ $Current->playerTwo }}. {{ $Current->p2_name }}</p>
 				</div>
 				</table>
 				@endforeach
