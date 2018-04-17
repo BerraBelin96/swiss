@@ -44,12 +44,16 @@
 		<div class="col-md-8">
 			<h1 class="text-center">Current tournament</h1>
 			<hr>
-			<div class="text-center row">
+			<div class="row">
 				@foreach ($CurrentGame as $Current)
 				<div class="col-md-6">
-					<p>{{ $Current->playerOne }}. {{ $Current->p1_name }} vs {{ $Current->playerTwo }}. {{ $Current->p2_name }}</p>
+					<span>{{ $Current->playerOne }}. {{ $Current->p1_name }}</span>
+					<span>vs</span>
+					<span>{{ $Current->playerTwo }}. {{ $Current->p2_name }}</span>
 				</div>
-				</table>
+				@endforeach
+				@foreach ($odd as $Odd)
+					<span class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</span>
 				@endforeach
 			</div>
 		</div>
