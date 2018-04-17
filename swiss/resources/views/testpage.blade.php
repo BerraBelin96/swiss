@@ -1,3 +1,54 @@
+<form method="POST" action="/createTournament">
+    {{ csrf_field() }}
+
+    <div class="form-group text-center">
+        <label for="players">Create new tournament:</label>
+    </div>
+    <div class="input-group col-md-10 mx-auto">
+        <input type="text" class="form-control" id="name" name="name"
+        placeholder="Name"> <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">Add</button>
+        </span>
+    </div>
+    @include('layouts.errors')
+</form>
+
+
+<form method="POST" action="/addname" >
+
+    {{ csrf_field() }}
+    <div class="form-group text-center">
+        <label for="players">Add players to your tournament:</label>
+    </div>
+    <div class="input-group col-md-10 mx-auto">
+        <input type="hidden" name="tournament" value="{{ $tournament }}">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name"> 
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">Add</button>
+        </span>
+        @if (count($players) >= 4)
+            <button class="btn btn-default"><a href="{{ URL::to('/startTournament') }}">Save</a></button>
+        @endif
+    </div>
+    @include('layouts.errors')
+</form>
+
+@foreach ($players as $player)
+    <tr>
+        <td class="col-md-2">{{ $player->name }}</td>
+        <td class="col-md-8"></td>
+        <td class="col-md-2"><a href="{{ URL::to('/delete/'.$player->id) }}"><span aria-hidden="true">&times;</span></a></td>
+    </tr>
+@endforeach
+
+
+
+
+
+
+
+
+
 {{-- 
 @foreach ($players as $player)
     <div>
@@ -58,7 +109,7 @@
 </form> --}}
 
 
-<form method="POST" action="/playerUpdate">
+{{-- <form method="POST" action="/playerUpdate">
     {{ csrf_field() }}
     @foreach ($players as $player)
     <div class="input-group">
@@ -84,8 +135,7 @@
         <hr>
     @endforeach
     <button type="submit" class="btn btn-default">Add</button>
-</form>
-
+</form> --}}
 
 {{-- <input class="form-check-input" type="checkbox" id="losses" name="losses[]" value="{{ $player->id }}"> --}}
 {{-- <input class="form-check-input" type="checkbox" id="losses" name="losses[]" value="{{ $player->id }}"> --}}

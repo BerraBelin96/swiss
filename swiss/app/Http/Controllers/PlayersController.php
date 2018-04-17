@@ -26,7 +26,14 @@ class PlayersController extends Controller
     	$players = new Player;
     	$this->validate(request(), ['name' => 'required']);
 
-    	Player::create(request(['name']));
+    	//Player::create(request(['name']));
+        //Player::create(request(['name','tournament'])); // <-- Använd när frontend är redo. 
+        
+        /* vvv För testning innan frontend är redo. vvv */
+        $name = request(['name']);
+        $name = $name["name"];
+        $tournament = '1';
+        Player::create(['name' => $name,'tournament' => $tournament]);
 
     	return back();
     }
@@ -40,11 +47,11 @@ class PlayersController extends Controller
         return back();
     }
 
-    public function formTest()
+    public function formTest($tournament)
     {
-        $players = Player::get();
+        $players = Player::where('tournament', $tournament)->get();
         
-        return view('testpage', compact('players'));
+        return view('testpage', compact('players', 'tournament'));
     }
 
     public function update()

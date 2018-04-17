@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCurrentGamesTable extends Migration
+class CreateTournamentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCurrentGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('current_games', function (Blueprint $table) {
+        Schema::create('tournaments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('playerOne');
-            $table->integer('playerTwo');
-            $table->integer('tournament');
+            $table->string('name');
+            $table->integer('current_round')->default(0);
+            $table->string('status')->default("new");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCurrentGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('current_games');
+        Schema::dropIfExists('tournaments');
     }
 }
