@@ -22,9 +22,15 @@ class TournamentController extends Controller
     	Tournaments::create(request(['name']));
         
         $Tournaments = Tournaments::get();
-        dd($Tournaments);
+        $TournamentsArray = $Tournaments->toArray();
+
+        $TournamentsName = Tournaments::orderBy('id', 'desc')->where(request(['name']))->get();
+        $TournamentsName= $TournamentsName->toArray();
         
-    	return back();
+        // dd($TournamentsArray, $TournamentsName[0], $TournamentsName[0]["id"], $TournamentsFlip);
+    	// return back();
+    	// return redirect()->route('admin.current');
+    	return redirect()->route('formTest', ['tournament' => $TournamentsName[0]["id"]]);
 
     	//return view('newTournament');
     }

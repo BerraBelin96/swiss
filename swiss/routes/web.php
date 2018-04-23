@@ -23,9 +23,9 @@ Route::prefix('admin')->group(function() {
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
-	Route::get('/create', 'AdminController@createTournaments')->name('admin.create');
+	Route::get('/create/{tournament}', 'AdminController@createTournaments')->name('admin.create');
 	Route::get('/manage', 'AdminController@manageTournaments')->name('admin.manage');
-	Route::get('/current', 'AdminController@currentTournament')->name('admin.current');
+	Route::get('/current/{tournament}', 'AdminController@currentTournament')->name('admin.current');
 	//Route::get('/startTournament', 'CurrentGameController@index')->name('admin.startTournament');
 });
 
@@ -38,10 +38,10 @@ Route::post('/addname', 'PlayersController@add');
 Route::post('/tournament', 'PlayersController@add');
 
 Route::post('/createTournament', 'TournamentController@create');
-Route::get('/startTournament', 'CurrentGameController@index');
-Route::get('/nextGame', 'CurrentGameController@nextGame')->name('nextGame');
+Route::get('/startTournament/{tournament}', 'CurrentGameController@index');
+Route::get('/nextGame/{tournament}', 'CurrentGameController@nextGame')->name('nextGame');
 
-Route::get('/formTest/{tournament}', 'PlayersController@formTest');
+Route::get('/formTest/{tournament}', 'PlayersController@formTest')->name('formTest');
 Route::post('/playerUpdate', 'PlayersController@update');
 Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
 

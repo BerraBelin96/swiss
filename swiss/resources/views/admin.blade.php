@@ -20,7 +20,8 @@
     <div class="row justify-content-center" id="tournament-btn">
         <div class="col-md-8">
             <button type="button" class="btn btn-secondary"><a href="#">Manage tournaments</a></button>
-            <button type="button" class="btn btn-secondary"><a href=" {{ route('admin.create') }} ">Create a tournament</a></button>
+            <button type="button" class="btn btn-secondary"><a href=" {{ route('admin.create', ['id' => 1]) }} ">Create a tournament</a></button>
+            
         </div>
     </div>
 </div>

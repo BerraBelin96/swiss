@@ -8,9 +8,9 @@ use App\CurrentGame;
 
 class CurrentGameController extends Controller
 {
-    public function index()
+    public function index($tournament)
     {
-    	$players = Player::get();
+    	$players = Player::where('tournament', $tournament)->get();
         // !!! Skriv om funktionen så detta funkar !!!
         // $playersArray = $players->toArray();
     	
@@ -42,7 +42,7 @@ class CurrentGameController extends Controller
                 Player::where('id', $playerIds1[$row])->update(['wait' => 1]);
             }
     		
-    		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2]);
+    		CurrentGame::create(['playerOne' => $pi1,'playerTwo' => $pi2,'tournament' => $tournament]);
 
     		Player::where('id', $pi1)->update(['met' => $pi2]);
     		Player::where('id', $pi2)->update(['met' => $pi1]);
@@ -59,14 +59,15 @@ class CurrentGameController extends Controller
         //     }
         // }
     	
-    	return redirect()->route('admin.current');
+    	// return redirect()->route('admin.current');
+        return redirect()->route('admin.current', ['tournament' => $tournament]);
     }
 
-    public function nextGame()
+    public function nextGame($tournament)
     {
         // dd(request()->all());
 
-        $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->get();
+        $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->where('tournament', $tournament)->get();
         
     	foreach ($players as $player) {
     		$playerIds[] = $player->id;
@@ -175,18 +176,20 @@ class CurrentGameController extends Controller
         }
 
 
-        CurrentGame::truncate();
+        CurrentGame::where('tournament', $tournament)->delete();
         
         foreach ($player1PlayersArray as $key => $value) {
-            CurrentGame::create(['playerOne' => $player1PlayersArray[$key]["id"],'playerTwo' => $player2PlayersArray[$key]["id"]]);
+            CurrentGame::create(['playerOne' => $player1PlayersArray[$key]["id"],'playerTwo' => $player2PlayersArray[$key]["id"],'tournament' => $tournament]);
         }
 
         if (isset($waitPlayer)) {
-            CurrentGame::create(['playerOne' => $waitPlayer["id"],'playerTwo' => "0"]);
+            CurrentGame::create(['playerOne' => $waitPlayer["id"],'playerTwo' => "0",'tournament' => $tournament]);
         }
 
     	// dd($players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
     	
-    	return redirect()->route('admin.current');
+    	return redirect()->route('admin.current', ['tournament' => $tournament]);
+
+        // return redirect()->route('admin.current', ['tournament' => $tournament]);
     }
 }
