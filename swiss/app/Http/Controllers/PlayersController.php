@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Player;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class PlayersController extends Controller
 {
