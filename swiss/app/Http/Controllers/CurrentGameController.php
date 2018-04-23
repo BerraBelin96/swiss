@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Player;
 use App\CurrentGame;
+use App\Tournaments;
 
 class CurrentGameController extends Controller
 {
     public function index($tournament)
     {
     	$players = Player::where('tournament', $tournament)->get();
-        // !!! Skriv om funktionen så detta funkar !!!
-        // $playersArray = $players->toArray();
-    	
+        
     	foreach ($players as $player) {
     		$playerIds[] = $player->id;
     	}
@@ -47,26 +46,15 @@ class CurrentGameController extends Controller
     		Player::where('id', $pi1)->update(['met' => $pi2]);
     		Player::where('id', $pi2)->update(['met' => $pi1]);
     	}
-
-        // !!! Skriv om funktionen så detta funkar !!!
-        //$piCount = count($playerIds);
-        // $playersArrayCount = count($playersArray);
-        // if ($playersArrayCount & 1 ) {
-        //     foreach ($playersArrayCount as $key => $value) {
-        //         if ($value["id"] == $pi1) {
-        //             Player::where('id', $value["id"])->update(['wait' => $value["wait"]+1]);
-        //         }
-        //     }
-        // }
+        
+        Tournaments::where('id', $tournament)->update(['status' => "ongoing"]);
+        Tournaments::where('id', $tournament)->update(['current_round' => 1]);
     	
-    	// return redirect()->route('admin.current');
         return redirect()->route('admin.current', ['tournament' => $tournament]);
     }
 
     public function nextGame($tournament)
     {
-        // dd(request()->all());
-
         $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->where('tournament', $tournament)->get();
         
     	foreach ($players as $player) {
@@ -100,7 +88,7 @@ class CurrentGameController extends Controller
             }
         }
 
-        //Här bestäms vem som ska vänta den här rundan om det är ett udda antal spelare.
+        //Här bestäms vem som ska vänta, den här rundan, om det är ett udda antal spelare.
         $playersArrayCount = count($playersArray);
         if ($playersArrayCount & 1 ) {
             
@@ -163,8 +151,6 @@ class CurrentGameController extends Controller
 	    	}
     	}
 
-        //dd($playersArrayStartCount, $waitPlayer, $players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
-
         foreach ($player1PlayersArray as $key => $value) {
             Player::where('id', $player1PlayersArray[$key]["id"])->update(['met' => $player1PlayersArray[$key]["met"] . "|" . $player2PlayersArray[$key]["id"]]);
             Player::where('id', $player2PlayersArray[$key]["id"])->update(['met' => $player2PlayersArray[$key]["met"] . "|" . $player1PlayersArray[$key]["id"]]);
@@ -186,10 +172,23 @@ class CurrentGameController extends Controller
             CurrentGame::create(['playerOne' => $waitPlayer["id"],'playerTwo' => "0",'tournament' => $tournament]);
         }
 
-    	// dd($players, $player1Met, $playersArray, $player1Key, $player2Key, $playerIds, $player1PlayersArray, $player2PlayersArray);
-    	
-    	return redirect()->route('admin.current', ['tournament' => $tournament]);
+        $tournamentRound = Tournaments::where('id', $tournament)->get();
+        $tournamentRound = $tournamentRound->toArray();
+        $tournamentRound = $tournamentRound[0]["current_round"];
 
-        // return redirect()->route('admin.current', ['tournament' => $tournament]);
+        Tournaments::where('id', $tournament)->update(['current_round' => $tournamentRound+1]);
+
+    	return redirect()->route('admin.current', ['tournament' => $tournament]);
+    }
+
+    public function reShuffle($tournament)
+    {
+        $tournamentRound = Tournaments::where('id', $tournament)->get();
+        $tournamentRound = $tournamentRound->toArray();
+        $tournamentRound = $tournamentRound[0]["current_round"];
+
+        Tournaments::where('id', $tournament)->update(['current_round' => $tournamentRound-1]);
+
+        return redirect()->route('nextGame', ['tournament' => $tournament]);
     }
 }

@@ -26,14 +26,7 @@ class PlayersController extends Controller
     	$players = new Player;
     	$this->validate(request(), ['name' => 'required']);
 
-    	//Player::create(request(['name']));
-        Player::create(request(['name','tournament'])); // <-- Använd när frontend är redo. 
-        
-        /* vvv För testning innan frontend är redo. vvv */
-        // $name = request(['name']);
-        // $name = $name["name"];
-        // $tournament = '1';
-        // Player::create(['name' => $name,'tournament' => $tournament]);
+        Player::create(request(['name','tournament']));
 
     	return back();
     }
@@ -47,13 +40,6 @@ class PlayersController extends Controller
         return back();
     }
 
-    public function formTest($tournament)
-    {
-        $players = Player::where('tournament', $tournament)->get();
-        
-        return view('testpage', compact('players', 'tournament'));
-    }
-
     public function update()
     {
         $tournament = request(['tournament']);
@@ -64,7 +50,7 @@ class PlayersController extends Controller
         foreach ($winIds as $winId) {
 
             $players = Player::get()->where('id', $winId);
-            //dd($players);
+            
             foreach ($players as $player) {
                 $playerWin = $player->wins;
             }
@@ -86,9 +72,6 @@ class PlayersController extends Controller
             Player::where('id', $losseId)->update(['losses' => $losseNum]);
         }
 
-        //dd(request(['wins']),request(['losses']),$players,$winIds);
-        
-        // return redirect()->route('nextGame');
         return redirect()->route('nextGame', ['tournament' => $tournament]);
 
     }

@@ -27,12 +27,15 @@ class TournamentController extends Controller
         $TournamentsName = Tournaments::orderBy('id', 'desc')->where(request(['name']))->get();
         $TournamentsName= $TournamentsName->toArray();
         
-        // dd($TournamentsArray, $TournamentsName[0], $TournamentsName[0]["id"], $TournamentsFlip);
-    	// return back();
-    	// return redirect()->route('admin.current');
     	return redirect()->route('formTest', ['tournament' => $TournamentsName[0]["id"]]);
+    }
 
-    	//return view('newTournament');
+    public function end()
+    {
+    	$tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+
+    	Tournaments::where('id', $tournament)->update(['status' => "finished"]);
     }
 
 }
