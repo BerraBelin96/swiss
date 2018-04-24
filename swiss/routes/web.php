@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function() {
 
 
 //Route::get('/admin', 'PlayersController@index');
-Route::get('/current', 'HomeController@current');
+Route::get('/current/{tournament}', 'HomeController@current');
 
 
 // vvv PlayersController vvv

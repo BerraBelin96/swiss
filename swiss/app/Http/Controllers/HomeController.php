@@ -24,17 +24,19 @@ class HomeController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
-    public function current()
+    public function current($tournament)
     {
-        $players = Player::get();
+        $players = Player::where('tournament', $tournament)->get();
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
                                     ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo')
+                                    ->where('current_games.tournament', '=', $tournament)
                                     ->get();
 
             $odd = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                         ->select('p1.name as p1_name', 'current_games.playerOne', 'current_games.playerTwo')
                                         ->where('playerTwo', '=', 0)
+                                        ->where('current_games.tournament', '=', $tournament)
                                         ->get();
         
         // $CurrentGame = CurrentGame::selectRaw("SELECT
