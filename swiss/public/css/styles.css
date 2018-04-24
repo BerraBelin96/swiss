@@ -144,3 +144,9 @@ hr {
 .navbar-toggler{
   margin-top: 10%;
 }
+.status{
+  float: right;
+}
+#tournamentName{
+  margin-bottom: 3%;
+}
