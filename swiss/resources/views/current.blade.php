@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
+	@guest
+	@else
 	<div>
 		<div id="navbarToggleExternalContent" class="col-md-3 right">
 			{{-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --}}
@@ -40,6 +42,7 @@
 		<!-- Use any element to open the sidenav -->
 		{{-- <span onclick="openNav()">open</span> --}}
 	</div>
+	@endguest
 	<div class="row justify-content-center">
 		<div class="col-md-8">
 			<h1 class="text-center">Current tournament</h1>

@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function() {
 });
 
 //Route::get('/admin', 'PlayersController@index');
+Route::get('/current', 'HomeController@current');
 
 Route::get('/delete/{id}', 'PlayersController@delete');
 
