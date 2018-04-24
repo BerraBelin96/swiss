@@ -22,11 +22,20 @@ class TournamentController extends Controller
     	Tournaments::create(request(['name']));
         
         $Tournaments = Tournaments::get();
-        dd($Tournaments);
-        
-    	return back();
+        $TournamentsArray = $Tournaments->toArray();
 
-    	//return view('newTournament');
+        $TournamentsName = Tournaments::orderBy('id', 'desc')->where(request(['name']))->get();
+        $TournamentsName= $TournamentsName->toArray();
+        
+    	return redirect()->route('admin.create', ['tournament' => $TournamentsName[0]["id"]]);
+    }
+
+    public function end()
+    {
+    	$tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+
+    	Tournaments::where('id', $tournament)->update(['status' => "finished"]);
     }
 
 }

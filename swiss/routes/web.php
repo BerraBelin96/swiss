@@ -23,31 +23,37 @@ Route::prefix('admin')->group(function() {
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
-	Route::get('/create', 'AdminController@createTournaments')->name('admin.create');
+	Route::get('/create/{tournament}', 'AdminController@createTournaments')->name('admin.create');
 	Route::get('/manage', 'AdminController@manageTournaments')->name('admin.manage');
-	Route::get('/current', 'AdminController@currentTournament')->name('admin.current');
-	//Route::get('/startTournament', 'CurrentGameController@index')->name('admin.startTournament');
+	Route::get('/current/{tournament}', 'AdminController@currentTournament')->name('admin.current');
 });
+
 
 //Route::get('/admin', 'PlayersController@index');
 Route::get('/current', 'HomeController@current');
 
+
+// vvv PlayersController vvv
+
 Route::get('/delete/{id}', 'PlayersController@delete');
-
-Route::post('/addname', 'PlayersController@add');
-
-Route::post('/tournament', 'PlayersController@add');
-
-Route::post('/createTournament', 'TournamentController@create');
-Route::get('/startTournament', 'CurrentGameController@index');
-Route::get('/nextGame', 'CurrentGameController@nextGame')->name('nextGame');
-
-Route::get('/formTest/{tournament}', 'PlayersController@formTest');
-Route::post('/playerUpdate', 'PlayersController@update');
 Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
+Route::post('/addname', 'PlayersController@add');
+Route::post('/tournament', 'PlayersController@add');
+Route::post('/playerUpdate', 'PlayersController@update');
+
+// vvv TournamentController vvv
+Route::post('/createTournament', 'TournamentController@create');
+Route::post('/endTournament', 'TournamentController@end');
+
+// vvv CurrentGameController vvv
+Route::get('/startTournament/{tournament}', 'CurrentGameController@index');
+Route::get('/nextGame/{tournament}', 'CurrentGameController@nextGame')->name('nextGame');
+Route::get('/reShuffle/{tournament}', 'CurrentGameController@reShuffle')->name('reShuffle');
 
 
 
+// vvv TestPageController vvv
+Route::get('/formTest/{tournament}', 'TestPageController@formTest')->name('formTest');
 
 // vvv DevHelperController vvv 
 Route::prefix('dev')->group(function() {

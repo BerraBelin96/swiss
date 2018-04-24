@@ -8,6 +8,7 @@
 			{{-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --}}
 			<form method="POST" action="/playerUpdate">
 				{{ csrf_field() }}
+				<input type="hidden" name="tournament" value="{{ $tournament }}">
 				@foreach ($players as $player)
 				<div class="input-group">
 					<div class="form-check form-check-inline">
