@@ -13,32 +13,32 @@
 				<div class="input-group">
 					<div class="form-check form-check-inline">
 						<label class="form-check-label" for="">
-						{{ $player->id }}. {{ $player->name }}
+							{{ $player->id }}. {{ $player->name }}
 						</label>
 					</div>
 					<div class="form-check form-check-inline">
 						<input class="form-check-input checkbox" type="checkbox" name="wins[]" id="wins" value="{{ $player->id }}">
 						<label class="form-check-label" for="">
 							Win
-					</label>
+						</label>
 					</div>
 					<div class="form-check form-check-inline">
-					<input class="form-check-input checkbox" type="checkbox" name="losses[]" id="losses" value="{{ $player->id }}">
-					<label class="form-check-label" for="">
-						Lose
-					</label>
+						<input class="form-check-input checkbox" type="checkbox" name="losses[]" id="losses" value="{{ $player->id }}">
+						<label class="form-check-label" for="">
+							Lose
+						</label>
 					</div>
 
 				</div>
-					<br>
-			    @endforeach
-			    <button type="submit" class="btn btn-default">Add</button>
+				<br>
+				@endforeach
+				<button type="submit" class="btn btn-default">Add</button>
 			</form>
 		</div>
 
 		<button class="navbar-toggler" id="button" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      	<span>open</span>
-    	</button>
+			<span>open</span>
+		</button>
 
 		<!-- Use any element to open the sidenav -->
 		{{-- <span onclick="openNav()">open</span> --}}
@@ -51,15 +51,20 @@
 			@endforeach
 			<hr>
 			<div class="row">
-				@foreach ($CurrentGame as $Current)
+				@foreach ($CurrentGame as $index => $Current)
 				<div class="col-md-6 playerName">
-					<span>{{ $Current->playerOne }}. {{ $Current->p1_name }}</span>
-					<span>vs</span>
-					<span>{{ $Current->playerTwo }}. {{ $Current->p2_name }}</span>
+					<h3>Bord {{ $index+1 }}</h3>
+					@guest
+					<p class="mb-0">{{ $Current->p1_name }}</p>
+					<p>{{ $Current->p2_name }}</p>
+					@else
+					<p class="mb-0">{{ $Current->playerOne }}. {{ $Current->p1_name }}</p>
+					<p>{{ $Current->playerTwo }}. {{ $Current->p2_name }}</p>
+					@endguest
 				</div>
 				@endforeach
 				@foreach ($odd as $Odd)
-					<span class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</span>
+				<p class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</p>
 				@endforeach
 			</div>
 		</div>

@@ -39,7 +39,7 @@
                 @endforeach --}}
                 @if (count($players))
                 <div class="row justify-content-center">
-                    <span>Total: {{ $players->count() }}</span>
+                    <p>Total: {{ $players->count() }}</p>
                 </div>
                 @endif
                 <table class="row col-md-10 mx-auto">

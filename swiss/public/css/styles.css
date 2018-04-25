@@ -27,6 +27,7 @@ html,
 body {
   height: 100%;
   background-color: #333;
+  font-family: Verdana;
 }
 
 body {
@@ -95,6 +96,7 @@ body {
  */
 .cover {
   padding: 0 1.5rem;
+  
 }
 .cover .btn-lg {
   padding: .75rem 1.25rem;
@@ -154,6 +156,9 @@ hr {
   margin-bottom: 4%;
 }
 .masthead-brand{
-  font-size: 40px;
+  font-size: 3em;
   font-family: Impact;
+}
+p{
+  font-size: 1.1em;
 }
