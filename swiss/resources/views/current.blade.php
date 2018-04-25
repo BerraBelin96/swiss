@@ -44,13 +44,15 @@
 		{{-- <span onclick="openNav()">open</span> --}}
 	</div>
 	@endguest
-	<div class="row justify-content-center">
+	<div class="row justify-content-center text-center">
 		<div class="col-md-8">
-			<h1 class="text-center">Current tournament</h1>
+			@foreach ($tournamentName as $Name)
+			<h1 class="">{{ $Name->name }}</h1>
+			@endforeach
 			<hr>
 			<div class="row">
 				@foreach ($CurrentGame as $Current)
-				<div class="col-md-6">
+				<div class="col-md-6 playerName">
 					<span>{{ $Current->playerOne }}. {{ $Current->p1_name }}</span>
 					<span>vs</span>
 					<span>{{ $Current->playerTwo }}. {{ $Current->p2_name }}</span>

@@ -32,7 +32,8 @@ class AdminController extends Controller
     public function createTournaments($tournament)
     {
         $players = Player::where('tournament', $tournament)->latest()->get();
-        return view('create', compact('players', 'tournament'));
+        $status = Tournaments::get();
+        return view('create', compact('players', 'tournament', 'status'));
     }
     public function manageTournaments()
     {
@@ -44,6 +45,8 @@ class AdminController extends Controller
         $players = Player::where('tournament', $tournament)->get();
         // $CurrentGame = CurrentGame::where('tournament', $tournament)->get();
         // $playersArray = $players->toArray();
+
+        $tournamentName = Tournaments::where('id', $tournament)->get();
         
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
@@ -63,6 +66,6 @@ class AdminController extends Controller
         //     JOIN players p1 ON p1.name = playerOne
         //     JOIN players p2 ON p2.name = playerTwo")
         //     ->get();
-        return view('current', compact('CurrentGame', 'players', 'odd', 'tournament'));
+        return view('current', compact('CurrentGame', 'players', 'odd', 'tournament', 'tournamentName'));
     }
 }

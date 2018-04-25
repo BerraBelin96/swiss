@@ -150,3 +150,10 @@ hr {
 #tournamentName{
   margin-bottom: 3%;
 }
+.playerName{
+  margin-bottom: 4%;
+}
+.masthead-brand{
+  font-size: 40px;
+  font-family: Impact;
+}
