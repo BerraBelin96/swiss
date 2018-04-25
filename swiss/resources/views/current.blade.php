@@ -52,22 +52,30 @@
 			<hr>
 			<div class="row">
 				@foreach ($CurrentGame as $index => $Current)
+				@if (count($CurrentGame) <= 2)
 				<div class="col-md-6 playerName">
-					<h3>Bord {{ $index+1 }}</h3>
-					@guest
-					<p class="mb-0">{{ $Current->p1_name }}</p>
-					<p>{{ $Current->p2_name }}</p>
-					@else
-					<p class="mb-0">{{ $Current->playerOne }}. {{ $Current->p1_name }}</p>
-					<p>{{ $Current->playerTwo }}. {{ $Current->p2_name }}</p>
-					@endguest
+					@elseif (count($CurrentGame) === 3)
+					<div class="col-md-4 playerName">
+						@elseif (count($CurrentGame) === 4)
+						<div class="col-md-6 playerName">
+							@else
+							<div class="col-md-4 playerName">
+								@endif
+								<h3>Table {{ $index+1 }}</h3>
+								@guest
+								<p class="mb-0">{{ $Current->p1_name }} ({{ $Current->p1_wins }}/{{ $Current->p1_losses }})</p>
+								<p>{{ $Current->p2_name }} ({{ $Current->p2_wins }}/{{ $Current->p2_losses }})</p>
+								@else
+								<p class="mb-0">{{ $Current->playerOne }}. {{ $Current->p1_name }} ({{ $Current->p1_wins }}/{{ $Current->p1_losses }})</p>
+								<p>{{ $Current->playerTwo }}. {{ $Current->p2_name }} ({{ $Current->p2_wins }}/{{ $Current->p2_losses }})</p>
+								@endguest
+							</div>
+							@endforeach
+							@foreach ($odd as $Odd)
+							<p class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</p>
+							@endforeach
+						</div>
+					</div>
 				</div>
-				@endforeach
-				@foreach ($odd as $Odd)
-				<p class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</p>
-				@endforeach
 			</div>
-		</div>
-	</div>
-</div>
-@endsection
+			@endsection

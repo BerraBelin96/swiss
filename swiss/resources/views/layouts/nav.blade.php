@@ -1,10 +1,18 @@
 <header class="masthead mb-auto">
 	<div class="inner">
+		@guest
+		<a href="{{ route('home') }}">
 		<h3 class="masthead-brand" id="logo">WorldofBoardGames.com</h3>
+		</a>
+		@else
+		<a href="{{ route('admin.dashboard') }}">
+		<h3 class="masthead-brand" id="logo">WorldofBoardGames.com</h3>
+		</a>
+		@endguest
 		<nav class="nav nav-masthead justify-content-center">
 			@guest
-			<a class="nav-link active" href="{{ url('/') }}">Home</a>
-			<a class="nav-link" href="{{ route('admin.login') }}">Log in</a>
+			<a class="nav-link active" href="{{ url('history') }}">Tournament History</a>
+			<a class="nav-link active" href="{{ route('admin.login') }}">Log in</a>
 			@else
 				<li class="nav-item dropdown">
 					<a id="dropdownMenuLink" class="dropdown-toggle active nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

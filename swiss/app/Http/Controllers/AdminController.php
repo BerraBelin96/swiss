@@ -50,7 +50,7 @@ class AdminController extends Controller
         
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
-                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo')
+                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo', 'p1.wins as p1_wins', 'p1.losses as p1_losses', 'p2.wins as p2_wins', 'p2.losses as p2_losses')
                                     ->where('current_games.tournament', '=', $tournament)
                                     ->get();
 
