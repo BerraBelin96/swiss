@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Player;
+use App\CurrentGame;
+use App\Tournaments;
+use App\GameHistory;
 
 class PlayersController extends Controller
 {
@@ -51,6 +54,24 @@ class PlayersController extends Controller
             }
             $winNum = $playerWin + 1;
             Player::where('id', $winId)->update(['wins' => $winNum]);
+
+
+            $currentGame = CurrentGame::where('tournament', $tournament)->get();
+            $currentGameArray = $currentGame->toArray();
+            foreach ($currentGameArray as $key => $value) {
+                if ($value["playerOne"] == $winId) {
+                    GameHistory::create(['playerOne' => $value["playerOne"],
+                                         'playerTwo' => $value["playerTwo"],
+                                         'winner' => $value["playerOne"],
+                                         'tournament' => $tournament]);
+                }
+                if ($value["playerTwo"] == $winId) {
+                    GameHistory::create(['playerOne' => $value["playerOne"],
+                                         'playerTwo' => $value["playerTwo"],
+                                         'winner' => $value["playerTwo"],
+                                         'tournament' => $tournament]);
+                }
+            }
         }
 
         $losseIds = request(['losses']);
