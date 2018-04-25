@@ -24,6 +24,12 @@ class HomeController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
+    public function index()
+    {
+        $tournament = Tournaments::get();
+        return view('index', compact('tournament'));
+    }
+
     public function current($tournament)
     {
         $players = Player::where('tournament', $tournament)->get();

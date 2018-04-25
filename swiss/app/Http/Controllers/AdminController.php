@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function index()
     {
         $tournament = Tournaments::get();
-        return view('admin', compact('tournament'));
+        return view('index', compact('tournament'));
     }
     public function createTournaments($tournament)
     {

@@ -159,6 +159,12 @@ hr {
   font-size: 3em;
   font-family: Impact;
 }
+.masthead-brand2{
+  font-family: Impact;
+}
 p{
+  font-size: 1.1em;
+}
+span{
   font-size: 1.1em;
 }
