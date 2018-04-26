@@ -58,17 +58,23 @@ class PlayersController extends Controller
 
             $currentGame = CurrentGame::where('tournament', $tournament)->get();
             $currentGameArray = $currentGame->toArray();
+            $tournaments = Tournaments::where('id', $tournament)->get();
+            $tournamentsArray = $tournaments->toArray();
+            $tournamentId = $tournamentsArray[0]['current_round'];
+
             foreach ($currentGameArray as $key => $value) {
                 if ($value["playerOne"] == $winId) {
                     GameHistory::create(['playerOne' => $value["playerOne"],
                                          'playerTwo' => $value["playerTwo"],
                                          'winner' => $value["playerOne"],
+                                         'round' => $tournamentId,
                                          'tournament' => $tournament]);
                 }
                 if ($value["playerTwo"] == $winId) {
                     GameHistory::create(['playerOne' => $value["playerOne"],
                                          'playerTwo' => $value["playerTwo"],
                                          'winner' => $value["playerTwo"],
+                                         'round' => $tournamentId,
                                          'tournament' => $tournament]);
                 }
             }

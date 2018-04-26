@@ -53,6 +53,7 @@ Route::get('/reShuffle/{tournament}', 'CurrentGameController@reShuffle')->name('
 
 // vvv TestPageController vvv
 Route::get('/formTest/{tournament}', 'TestPageController@formTest')->name('formTest');
+Route::get('/printGame/{tournament}', 'TestPageController@printGame')->name('printGame');
 
 // vvv DevHelperController vvv 
 Route::prefix('dev')->group(function() {
