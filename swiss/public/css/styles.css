@@ -27,6 +27,7 @@ html,
 body {
   height: 100%;
   background-color: #333;
+  font-family: Verdana;
 }
 
 body {
@@ -95,6 +96,7 @@ body {
  */
 .cover {
   padding: 0 1.5rem;
+  
 }
 .cover .btn-lg {
   padding: .75rem 1.25rem;
@@ -136,7 +138,14 @@ hr {
   top: 0;
   margin-top: 10%;
   right: 0;
-  position: fixed;
+  position: absolute;
+}
+.left{
+  float: left;
+  top: 0;
+  margin-top: 10%;
+  left: 0;
+  position: absolute;
 }
 .collapse{
   margin-top: 10%;
@@ -149,4 +158,20 @@ hr {
 }
 #tournamentName{
   margin-bottom: 3%;
+}
+.playerName{
+  margin-bottom: 4%;
+}
+.masthead-brand{
+  font-size: 3em;
+  font-family: Impact;
+}
+.masthead-brand2{
+  font-family: Impact;
+}
+p{
+  font-size: 1.1em;
+}
+span{
+  font-size: 1.1em;
 }

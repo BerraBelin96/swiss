@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container-fluid">
+    @foreach ($status as $Status)
+    @if ($Status->status == 'new')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="POST" action="/addname" >
@@ -18,13 +20,16 @@
                     </span>
                     @if (count($players) >= 4)
                     <button class="btn btn-default"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Save</a></button>
-            @endif
+                    @endif
                 </div>
                 @include('layouts.errors')
             </form>
             <hr>           
         </div>
     </div>
+    @else
+    @endif
+    @endforeach
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (!count($players))
@@ -34,7 +39,7 @@
                 @endforeach --}}
                 @if (count($players))
                 <div class="row justify-content-center">
-                    <span>Total: {{ $players->count() }}</span>
+                    <p>Total: {{ $players->count() }}</p>
                 </div>
                 @endif
                 <table class="row col-md-10 mx-auto">

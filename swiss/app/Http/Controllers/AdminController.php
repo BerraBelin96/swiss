@@ -27,12 +27,13 @@ class AdminController extends Controller
     public function index()
     {
         $tournament = Tournaments::get();
-        return view('admin', compact('tournament'));
+        return view('index', compact('tournament'));
     }
     public function createTournaments($tournament)
     {
         $players = Player::where('tournament', $tournament)->latest()->get();
-        return view('create', compact('players', 'tournament'));
+        $status = Tournaments::get();
+        return view('create', compact('players', 'tournament', 'status'));
     }
     public function manageTournaments()
     {
@@ -44,10 +45,12 @@ class AdminController extends Controller
         $players = Player::where('tournament', $tournament)->get();
         // $CurrentGame = CurrentGame::where('tournament', $tournament)->get();
         // $playersArray = $players->toArray();
+
+        $tournamentName = Tournaments::where('id', $tournament)->get();
         
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
-                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo')
+                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'current_games.playerOne', 'current_games.playerTwo', 'p1.wins as p1_wins', 'p1.losses as p1_losses', 'p2.wins as p2_wins', 'p2.losses as p2_losses')
                                     ->where('current_games.tournament', '=', $tournament)
                                     ->get();
 
@@ -63,6 +66,6 @@ class AdminController extends Controller
         //     JOIN players p1 ON p1.name = playerOne
         //     JOIN players p2 ON p2.name = playerTwo")
         //     ->get();
-        return view('current', compact('CurrentGame', 'players', 'odd', 'tournament'));
+        return view('current', compact('CurrentGame', 'players', 'odd', 'tournament', 'tournamentName'));
     }
 }
