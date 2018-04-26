@@ -30,7 +30,7 @@
 
     <div class="container d-flex h-100 p-3 mx-auto flex-column">
       @include ('layouts.nav')
-      <main role="main" class="inner cover">
+      <main role="main" class="inner cover" id="main">
         @yield ('content')
       </main>
       @include ('layouts.footer')

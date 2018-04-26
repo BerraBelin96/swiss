@@ -118,7 +118,7 @@ hr {
     display: block;
     height: 3px;
     border: 0;
-    border-top: 1px solid #222;
+    border-top: 1px solid rgba(255,255,255,0.2);
     margin: 1em 0;
     padding: 0; 
 }
@@ -158,6 +158,8 @@ hr {
 }
 #tournamentName{
   margin-bottom: 3%;
+  padding-bottom: 2%;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 .playerName{
   margin-bottom: 4%;

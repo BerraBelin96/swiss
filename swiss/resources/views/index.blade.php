@@ -16,7 +16,7 @@
              {{ csrf_field() }}
              <div class="input-group col-md-10 mx-auto">
                  <input type="text" class="form-control" id="name" name="name"
-                 placeholder="Create a new tournament"> <span class="input-group-btn">
+                 placeholder="Create a tournament" autofocus> <span class="input-group-btn">
                      <button type="submit" class="btn btn-secondary">Create</button>
                  </span>
              </div>
@@ -36,11 +36,14 @@
          <a class="col-md-12" href="{{ URL::to('/current/'.$tournaments->id) }}">
         @else
         <a class="col-md-12" href="{{ URL::to('admin/current/'.$tournaments->id) }}">
-            @endguest
+            @if ( $tournaments->status == 'new' )
+                <a class="col-md-12" href="{{ URL::to('admin/create/'.$tournaments->id) }}">
+            @endif
+        @endguest
          <div id="tournamentName">
             <span>{{ $tournaments->name }}</span> 
-            <p class="status">{{ $tournaments->status }}
-            </p>
+            <span class="status">{{ $tournaments->status }}
+            </span>
         </div>
         </a>
          @endforeach
