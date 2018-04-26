@@ -18,6 +18,7 @@ class CreateGameHistoriesTable extends Migration
             $table->integer('playerOne');
             $table->integer('playerTwo');
             $table->integer('winner');
+            $table->integer('round');
             $table->integer('tournament');
             $table->timestamps();
         });
