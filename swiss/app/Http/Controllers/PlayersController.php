@@ -97,4 +97,30 @@ class PlayersController extends Controller
         return redirect()->route('nextGame', ['tournament' => $tournament]);
 
     }
+
+    public function search()
+    {
+        $tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+        $name = request(['name']);
+        $name = $name["name"];
+        $searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
+
+        $players = Player::where('tournament', $tournament)->get();
+        
+        return view('testPage.testpage', compact('players', 'tournament', 'searchPlayers'));
+    }
+
+    public function setTournament()
+    {
+        $tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+        $id = request(['playerId']);
+        $id = $id["playerId"];
+
+        Player::where('id', $id)->update(['tournament' => $tournament]);
+
+        $players = Player::where('tournament', $tournament)->get();
+        return view('testPage.testpage', compact('players', 'tournament'));
+    }
 }

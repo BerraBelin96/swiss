@@ -39,6 +39,8 @@ Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
 Route::post('/addname', 'PlayersController@add');
 Route::post('/tournament', 'PlayersController@add');
 Route::post('/playerUpdate', 'PlayersController@update');
+Route::post('/searchPlayer', 'PlayersController@search')->name('searchPlayer');
+Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('playerSetTournament');
 
 // vvv TournamentController vvv
 Route::post('/createTournament', 'TournamentController@create');

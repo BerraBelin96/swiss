@@ -36,6 +36,8 @@ class TournamentController extends Controller
         $tournament = $tournament["tournament"];
 
     	Tournaments::where('id', $tournament)->update(['status' => "finished"]);
+    	//admin.dashboard
+    	return redirect()->route('admin.dashboard');
     }
 
 }
