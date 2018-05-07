@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tournaments;
+use App\Player;
 
 class TournamentController extends Controller
 {
@@ -30,13 +31,19 @@ class TournamentController extends Controller
     	return redirect()->route('admin.create', ['tournament' => $TournamentsName[0]["id"]]);
     }
 
-    public function end()
+    public function end($tournament)
     {
-    	$tournament = request(['tournament']);
-        $tournament = $tournament["tournament"];
+    	// Avsluta en turnering och nollställ spelarna som var med i den turneringen. 
+    	
+        Player::where('tournament', $tournament)->update(['wins' => '0']);
+        Player::where('tournament', $tournament)->update(['losses' => '0']);
+        Player::where('tournament', $tournament)->update(['wait' => '0']);
+        Player::where('tournament', $tournament)->update(['met' => NULL]);
+
+        Player::where('tournament', $tournament)->update(['tournament' => NULL]);
 
     	Tournaments::where('id', $tournament)->update(['status' => "finished"]);
-    	//admin.dashboard
+    	
     	return redirect()->route('admin.dashboard');
     }
 

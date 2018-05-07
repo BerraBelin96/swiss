@@ -33,7 +33,6 @@ Route::get('/current/{tournament}', 'HomeController@current');
 
 
 // vvv PlayersController vvv
-
 Route::get('/delete/{id}', 'PlayersController@delete');
 Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
 Route::post('/addname', 'PlayersController@add');
@@ -44,7 +43,7 @@ Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('pl
 
 // vvv TournamentController vvv
 Route::post('/createTournament', 'TournamentController@create');
-Route::post('/endTournament', 'TournamentController@end');
+Route::get('/endTournament/{tournament}', 'TournamentController@end')->name('endTournament');
 
 // vvv CurrentGameController vvv
 Route::get('/startTournament/{tournament}', 'CurrentGameController@index');

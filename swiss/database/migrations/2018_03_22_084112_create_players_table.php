@@ -20,7 +20,7 @@ class CreatePlayersTable extends Migration
             $table->integer('losses')->default(0);
             $table->text('met')->nullable();
             $table->integer('wait')->default(0);
-            $table->integer('tournament');
+            $table->integer('tournament')->nullable();
             $table->timestamps();
         });
     }
