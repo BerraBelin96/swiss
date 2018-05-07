@@ -19,7 +19,7 @@ class PlayersController extends Controller
 
     public function add()
     {
-    	//Lägger till namn i databasen
+    	// Lägger till namn i databasen
 
     	$players = new Player;
     	$this->validate(request(), ['name' => 'required']);
@@ -31,17 +31,26 @@ class PlayersController extends Controller
 
     public function delete($id)
     {
-        //Tar bort namn från databasen
+        // Tar bort en spelare från en turnering
 
-        $players = new Player;
-        Player::where('id', $id)->delete();
+        Player::where('id', $id)->update(['wins' => '0']);
+        Player::where('id', $id)->update(['losses' => '0']);
+        Player::where('id', $id)->update(['wait' => '0']);
+        Player::where('id', $id)->update(['met' => NULL]);
+        Player::where('id', $id)->update(['tournament' => NULL]);
         return back();
     }
 
     public function update()
     {
+        // Ökar spelarnas "wins" och "losses" värden. 
+
         $tournament = request(['tournament']);
         $tournament = $tournament["tournament"];
+
+        $action = request(['action']);
+        $action = $action["action"];
+
         $winIds = request(['wins']);
         $winIds = $winIds['wins'];
         
@@ -94,7 +103,51 @@ class PlayersController extends Controller
             Player::where('id', $losseId)->update(['losses' => $losseNum]);
         }
 
-        return redirect()->route('nextGame', ['tournament' => $tournament]);
+        // Här bestämms om turneringen ska avslutas eller starta en ny runda, beroende på vilken knapp användaren tröck på i formuläret. 
+        
+        switch ($action) {
+            case 'Next':
+                return redirect()->route('nextGame', ['tournament' => $tournament]);
+                break;
 
+            case 'End':
+                return redirect()->route('endTournament', ['tournament' => $tournament]);
+                break;
+            
+            default:
+                return redirect()->route('nextGame', ['tournament' => $tournament]);
+                break;
+        }
+
+    }
+
+    public function search()
+    {
+        // Söker i databasen efter spelare som har de namn, eller ett liknande namn, som användaren sökte efter. 
+
+        $tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+        $name = request(['name']);
+        $name = $name["name"];
+        $searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
+
+        $players = Player::where('tournament', $tournament)->get();
+        
+        return view('testPage.testpage', compact('players', 'tournament', 'searchPlayers'));
+    }
+
+    public function setTournament()
+    {
+        // Ändrar en spelares tournament värde
+
+        $tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
+        $id = request(['playerId']);
+        $id = $id["playerId"];
+
+        Player::where('id', $id)->update(['tournament' => $tournament]);
+
+        $players = Player::where('tournament', $tournament)->get();
+        return view('testPage.testpage', compact('players', 'tournament'));
     }
 }
