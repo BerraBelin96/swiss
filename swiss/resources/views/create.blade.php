@@ -15,7 +15,8 @@
                 <div class="input-group col-md-10 mx-auto">
                     <input type="hidden" name="tournament" value="{{ $tournament }}">
                     <input type="text" class="form-control" id="name" name="name"
-                    placeholder="Name" autofocus> <span class="input-group-btn">
+                    placeholder="Name" autofocus>
+                    <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">Add</button>
                     </span>
                     @if (count($players) >= 4)

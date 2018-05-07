@@ -32,7 +32,7 @@ class AdminController extends Controller
     public function createTournaments($tournament)
     {
         $players = Player::where('tournament', $tournament)->latest()->get();
-        $status = Tournaments::get();
+        $status = Tournaments::where('id', $tournament)->get();
         return view('create', compact('players', 'tournament', 'status'));
     }
     public function manageTournaments()

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Player;
 use App\CurrentGame;
 use App\Tournaments;
+use App\GameHistory;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,20 @@ class HomeController extends Controller
     }
     public function history()
     {
-        return view('tournamentHistory');
+        $tournament = Tournaments::get();
+        return view('tournamentHistory', compact('tournament'));
+    }
+    public function historyTournament($tournament)
+    {
+        $tournamentName = Tournaments::where('id', $tournament)->get();
+        $gameHistory = GameHistory::join('players as p1', 'game_histories.playerOne', '=', 'p1.id')
+                                    ->join('players as p2', 'game_histories.playerTwo', '=', 'p2.id')
+                                    ->join('players as p3', 'game_histories.winner', '=', 'p3.id')
+                                    ->select('p1.name as p1_name', 'p2.name as p2_name', 'p3.name as p_win', 'game_histories.round', 'game_histories.created_at')
+                                    ->orderBy('game_histories.round', 'asc')
+                                    ->where('game_histories.tournament', '=', $tournament)
+                                    ->get();
+        return view('history', compact('gameHistory', 'tournamentName'));
     }
     public function current($tournament)
     {

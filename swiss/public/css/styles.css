@@ -153,6 +153,11 @@ hr {
 .navbar-toggler{
   margin-top: 10%;
 }
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .status{
   float: right;
 }
@@ -176,4 +181,20 @@ p{
 }
 span{
   font-size: 1.1em;
+}
+.historyTable td{
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 5px;
+}
+.historyTable thead th{
+  border-top: 0px solid rgba(255,255,255,0.2);
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  padding: 5px;
+}
+.historyFont{
+  font-size: 0.5rem;
+}
+.icon{
+  font-size: 3rem;
+  color: #fff;
 }

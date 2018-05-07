@@ -32,6 +32,7 @@
  <div class="container-fluid">
  <div class="row justify-content-center col-md-8 mx-auto">
          @foreach ($tournament as $tournaments)
+         @if ($tournaments->status != 'finished')
          @guest
          <a class="col-md-12" href="{{ URL::to('/current/'.$tournaments->id) }}">
         @else
@@ -46,6 +47,7 @@
             </span>
         </div>
         </a>
+        @endif
          @endforeach
          </div>
          </div>

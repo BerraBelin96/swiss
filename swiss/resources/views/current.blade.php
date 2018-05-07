@@ -32,13 +32,20 @@
 				</div>
 				<br>
 				@endforeach
-				<button type="submit" class="btn btn-default">Add</button>
+				<button type="submit" class="btn btn-default">Next</button>
+			</form>
+			<br>
+			<form method="POST" action="/endTournament">
+			    {{ csrf_field() }}
+			    <input type="hidden" name="tournament" value="{{ $tournament }}">
+			    <button type="submit" class="btn btn-default">End</button>
 			</form>
 		</div>
-
+		<div class="center">
 		<button class="navbar-toggler" id="button" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span>open</span>
+			<span class="icon">&equiv;</span>
 		</button>
+		</div>
 
 		<!-- Use any element to open the sidenav -->
 		{{-- <span onclick="openNav()">open</span> --}}
@@ -48,8 +55,10 @@
 		<div class="col-md-8">
 			@foreach ($tournamentName as $Name)
 			<h1 class="">{{ $Name->name }}</h1>
-			@endforeach
 			<hr>
+			<h2>Round {{ $Name->current_round }}</h2>
+			<br>
+			@endforeach
 			<div class="row">
 				@foreach ($CurrentGame as $index => $Current)
 				@if (count($CurrentGame) <= 2)
