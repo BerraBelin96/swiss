@@ -195,6 +195,9 @@ class CurrentGameController extends Controller
     public function printGame($tournament)
     {
         $players = Player::where('tournament', $tournament)->get();
+        $tournamentName = Tournaments::where('id', $tournament)->get();
+        $tournamentName = $tournamentName->toArray();
+        $tournamentName = $tournamentName["0"]["name"];
         
         $CurrentGame = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
                                     ->join('players as p2', 'current_games.playerTwo', '=', 'p2.id')
@@ -208,6 +211,6 @@ class CurrentGameController extends Controller
                                         ->where('current_games.tournament', '=', $tournament)
                                         ->get();
         
-        return view('printGame', compact('CurrentGame', 'players', 'odd', 'tournament'));
+        return view('printGame', compact('CurrentGame', 'players', 'odd', 'tournament', 'tournamentName'));
     }
 }
