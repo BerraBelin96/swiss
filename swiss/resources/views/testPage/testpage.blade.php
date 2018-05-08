@@ -59,7 +59,7 @@
 
 <br><br><br>
 
-<form method="POST" action="/searchPlayer">
+<form method="POST" action="/admin/searchPlayer">
     {{ csrf_field() }}
 
     <div class="form-group text-center">
@@ -77,6 +77,20 @@
 
 @if (isset($searchPlayers))
     @foreach ($searchPlayers as $key => $sPlayer)
+        <p>{{ $sPlayer->name }}</p>
+        {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
+        <form method="POST" action="/playerSetTournament">
+            {{ csrf_field() }}
+            <input type="hidden" name="tournament" value="{{ $tournament }}">
+            <input type="hidden" name="playerId" value="{{ $sPlayer->id }}">
+            <button type="submit" class="btn btn-default">Add Player</button>
+        </form>
+    @endforeach
+@endif
+
+@if (session('searchPlayers'))
+    {{-- {{ session('status') }} --}}
+    @foreach (session('searchPlayers') as $key => $sPlayer)
         <p>{{ $sPlayer->name }}</p>
         {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
         <form method="POST" action="/playerSetTournament">

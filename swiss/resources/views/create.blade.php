@@ -88,8 +88,8 @@
     @endforeach
     <div class="row justify-content-center">
         <div class="col-md-5">
-                @if (isset($searchPlayers))
-        @foreach ($searchPlayers as $key => $sPlayer)
+                @if (session('searchPlayers'))
+        @foreach (session('searchPlayers') as $key => $sPlayer)
             {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
             <form method="POST" action="/admin/playerSetTournament">
                 {{ csrf_field() }}
