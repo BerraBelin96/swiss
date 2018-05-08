@@ -32,8 +32,12 @@
         </div>
         @foreach ($status as $Status)
         @if ($Status->status == 'new')
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center">
             <div class="col-md-8">
+                @foreach ($tournamentName as $Name)
+                    <h1 class="">{{ $Name->name }}</h1>
+                    <br>
+                @endforeach
                 <form method="POST" action="/searchPlayer" >
 
                     {{ csrf_field() }}
@@ -51,6 +55,7 @@
                     @include('layouts.errors')
                 </form>
                 <br>
+                <div class="center">
                 @if (session('name'))
                 <button class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Add Name</button>
                 <div class="modal" id="myModal">
@@ -80,6 +85,7 @@
         @if (count($players) >= 4)
         <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Start</a></button>
         @endif
+        </div>
         <hr>           
     </div>
 </div>
@@ -102,6 +108,14 @@
             <p class="text-center">There are no matching players!</p>
         @endif
         @endif
+        @foreach ( $recentPlayers as $rPlayers )
+            <form method="POST" action="/playerSetTournament">
+            {{ csrf_field() }}
+            <input type="hidden" name="tournament" value="{{ $tournament }}">
+            <input type="hidden" name="playerId" value="{{ $rPlayers->id }}">
+            <button type="submit" class="addName">{{ $rPlayers->name }}</button>
+        </form>
+        @endforeach
     </div>
     
 </div>
