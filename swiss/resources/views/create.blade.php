@@ -51,7 +51,7 @@
                         @include('layouts.errors')
                     </form>
                     <br>
-                    @if (isset($searchPlayers))
+                    @if (session('searchPlayers'))
                     <button class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Add Name</button>
                     <div class="modal" id="myModal">
                       <div class="modal-dialog">
@@ -78,7 +78,7 @@
             </div>
             @endif
             @if (count($players) >= 4)
-            <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Save</a></button>
+            <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Start</a></button>
             @endif
             <hr>           
         </div>
@@ -97,6 +97,9 @@
                 <input type="hidden" name="playerId" value="{{ $sPlayer->id }}">
                 <button type="submit" class="addName">{{ $sPlayer->name }}</button>
             </form>
+            @if (!count($sPlayer))
+                <p class="text-center">There are no mathing players</p>
+            @endif
             @endforeach
             @endif
         </div>
