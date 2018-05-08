@@ -22,7 +22,7 @@
 		<hr>
 		<div class="row">
 			<div class="col-2">
-				<p>Table: {{ $i }}</p>
+				<p>{{ $tournamentName }}</p>
 			</div>
 			<div class="col">
 				<p class="inline">ID: {{ $Current->playerOne }}</p>
@@ -35,7 +35,9 @@
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-2"></div>
+			<div class="col-2">
+				<p>Table: {{ $i }}</p>
+			</div>
 			<div class="col">
 				<p class="inline">ID: {{ $Current->playerTwo }}</p> 
 				<p class="inline">Name: {{ $Current->p2_name }}</p>

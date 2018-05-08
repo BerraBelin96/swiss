@@ -38,7 +38,7 @@ class TournamentController extends Controller
 
     	Tournaments::where('id', $tournament)->update(['status' => "stopped"]);
 
-    	dd($players, $tournament);
+    	dd($players->toArray(), $tournament);
     	return view('', compact('players', 'tournament'));
     }
 
