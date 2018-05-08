@@ -137,7 +137,7 @@ class PlayersController extends Controller
         $status = Tournaments::where('id', $tournament)->get();
         
         return redirect()->route('admin.create', ['tournament' => $tournament])
-                         ->with('searchPlayers', $searchPlayers)->with('name', $name);
+                         ->with('searchPlayers', $searchPlayers);
     }
 
     public function setTournament()
