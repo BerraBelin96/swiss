@@ -38,6 +38,12 @@ class TestPageController extends Controller
         // return view('testPage.printGame', compact('players', 'tournament'));
     }
 
+    public function fetch($tournament)
+    {
+    	$recentPlayers = Player::orderBy('updated_at', 'desc')->take(10)->get();
+    	dd($recentPlayers->toArray());
+    }
+
     // public function searchPlayer()
     // {
     // 	$tournament = request(['tournament']);

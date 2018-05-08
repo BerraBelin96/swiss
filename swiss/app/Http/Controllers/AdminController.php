@@ -32,8 +32,9 @@ class AdminController extends Controller
     public function createTournaments($tournament)
     {
         $players = Player::where('tournament', $tournament)->latest()->get();
+        $recentPlayers = Player::orderBy('updated_at', 'desc')->take(10)->get();
         $status = Tournaments::where('id', $tournament)->get();
-        return view('create', compact('players', 'tournament', 'status'));
+        return view('create', compact('players', 'tournament', 'status', 'recentPlayers'));
     }
     public function manageTournaments()
     {
