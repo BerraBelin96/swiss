@@ -32,14 +32,15 @@
 				</div>
 				<br>
 				@endforeach
-				<button type="submit" class="btn btn-default">Next</button>
+				<button type="submit" name="action" value="Next" class="btn btn-default">Next</button>
+				<button type="submit" name="action" value="End" class="btn btn-default">End</button>
+				<button class="btn btn-default">
+					<a href="{{ URL::to('/reShuffle/'.$tournament) }}">
+					    Reshuffle
+					</a>
+				</button>
 			</form>
 			<br>
-			<form method="POST" action="/endTournament">
-			    {{ csrf_field() }}
-			    <input type="hidden" name="tournament" value="{{ $tournament }}">
-			    <button type="submit" class="btn btn-default">End</button>
-			</form>
 		</div>
 		<div class="center">
 		<button class="navbar-toggler" id="button" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">

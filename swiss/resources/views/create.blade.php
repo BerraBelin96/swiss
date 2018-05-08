@@ -34,7 +34,7 @@
     @if ($Status->status == 'new')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="/admin/searchPlayer" >
+            <form method="POST" action="/searchPlayer" >
 
                 {{ csrf_field() }}
                 <div class="form-group text-center">
@@ -91,7 +91,7 @@
                 @if (isset($searchPlayers))
         @foreach ($searchPlayers as $key => $sPlayer)
             {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
-            <form method="POST" action="/admin/playerSetTournament">
+            <form method="POST" action="/playerSetTournament">
                 {{ csrf_field() }}
                 <input type="hidden" name="tournament" value="{{ $tournament }}">
                 <input type="hidden" name="playerId" value="{{ $sPlayer->id }}">
