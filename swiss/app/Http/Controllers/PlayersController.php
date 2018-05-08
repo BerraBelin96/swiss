@@ -113,7 +113,7 @@ class PlayersController extends Controller
                 break;
 
             case 'End':
-                return redirect()->route('endTournament', ['tournament' => $tournament]);
+                return redirect()->route('stopTournament', ['tournament' => $tournament]);
                 break;
             
             default:

@@ -44,6 +44,7 @@ Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('pl
 
 // vvv TournamentController vvv
 Route::post('/createTournament', 'TournamentController@create');
+Route::get('/stopTournament/{tournament}', 'TournamentController@stop')->name('stopTournament');
 Route::get('/endTournament/{tournament}', 'TournamentController@end')->name('endTournament');
 
 // vvv CurrentGameController vvv

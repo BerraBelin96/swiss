@@ -31,10 +31,22 @@ class TournamentController extends Controller
     	return redirect()->route('admin.create', ['tournament' => $TournamentsName[0]["id"]]);
     }
 
+    public function stop($tournament)
+    {
+    	$players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->where('tournament', $tournament)->get();
+
+    	Tournaments::where('id', $tournament)->update(['status' => "stopped"]);
+
+    	dd($players, $tournament);
+    	return view('', compact('players', 'tournament'));
+    }
+
     public function end($tournament)
     {
     	// Avsluta en turnering och nollställ spelarna som var med i den turneringen. 
     	
+    	CurrentGame::where('tournament', $tournament)->delete();
+
         Player::where('tournament', $tournament)->update(['wins' => '0']);
         Player::where('tournament', $tournament)->update(['losses' => '0']);
         Player::where('tournament', $tournament)->update(['wait' => '0']);
