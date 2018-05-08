@@ -78,7 +78,7 @@
         </div>
         @endif
         @if (count($players) >= 4)
-        <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Save</a></button>
+        <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Start</a></button>
         @endif
         <hr>           
     </div>

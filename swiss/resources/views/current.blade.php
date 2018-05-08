@@ -40,7 +40,7 @@
 					</a>
 				</button>
 				<button class="btn btn-secondary">
-					<a href="{{ URL::to('/printGame/'.$tournament) }}">
+					<a href="{{ URL::to('/printGame/'.$tournament) }}" target="_blank">
 						Print out
 					</a>
 				</button>
