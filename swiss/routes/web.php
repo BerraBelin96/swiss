@@ -60,6 +60,7 @@ Route::get('/printGame/{tournament}', 'CurrentGameController@printGame')->name('
 // vvv TestPageController vvv
 Route::get('/formTest/{tournament}', 'TestPageController@formTest')->name('formTest');
 Route::get('/testPrintGame/{tournament}', 'TestPageController@printGame')->name('testPrintGame');
+Route::get('/testFetch/{tournament}', 'TestPageController@fetch')->name('testFetch');
 
 // vvv DevHelperController vvv 
 Route::prefix('dev')->group(function() {
