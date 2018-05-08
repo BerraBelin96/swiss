@@ -6,13 +6,9 @@
 	<title>Print Games</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style type="text/css">
-		/*.inline{
-			display: inline-block;
-		}*/
 		p{
 			font-size: 1.3em;
 			font-family: "Times New Roman", Times, serif;
-			/*font-family: Arial, Helvetica, sans-serif;*/
 		}
 
 		hr{
