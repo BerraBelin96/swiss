@@ -98,6 +98,9 @@
             <button type="submit" class="addName">{{ $sPlayer->name }}</button>
         </form>
         @endforeach
+        @if (!count(session('searchPlayers')))
+            <p class="text-center">There are no matching players!</p>
+        @endif
         @endif
     </div>
     
