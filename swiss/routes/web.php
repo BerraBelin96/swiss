@@ -50,12 +50,13 @@ Route::get('/endTournament/{tournament}', 'TournamentController@end')->name('end
 Route::get('/startTournament/{tournament}', 'CurrentGameController@index');
 Route::get('/nextGame/{tournament}', 'CurrentGameController@nextGame')->name('nextGame');
 Route::get('/reShuffle/{tournament}', 'CurrentGameController@reShuffle')->name('reShuffle');
+Route::get('/printGame/{tournament}', 'CurrentGameController@printGame')->name('printGame');
 
 
 
 // vvv TestPageController vvv
 Route::get('/formTest/{tournament}', 'TestPageController@formTest')->name('formTest');
-Route::get('/printGame/{tournament}', 'TestPageController@printGame')->name('printGame');
+Route::get('/testPrintGame/{tournament}', 'TestPageController@printGame')->name('testPrintGame');
 
 // vvv DevHelperController vvv 
 Route::prefix('dev')->group(function() {
