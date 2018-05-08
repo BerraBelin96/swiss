@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Player;
 use App\CurrentGame;
 use App\Tournaments;
+use App\GameHistory;
 
 class AdminController extends Controller
 {
