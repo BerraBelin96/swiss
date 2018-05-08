@@ -88,13 +88,8 @@
     @endforeach
     <div class="row justify-content-center">
         <div class="col-md-5">
-<<<<<<< HEAD
-            @if (isset($searchPlayers))
-            @foreach ($searchPlayers as $key => $sPlayer)
-=======
                 @if (session('searchPlayers'))
         @foreach (session('searchPlayers') as $key => $sPlayer)
->>>>>>> d6eb3f83f6e049bbc296f75752a0501042b0ff3a
             {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
             <form method="POST" action="/playerSetTournament">
                 {{ csrf_field() }}
