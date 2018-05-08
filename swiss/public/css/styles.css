@@ -198,3 +198,12 @@ span{
   font-size: 3rem;
   color: #fff;
 }
+.addName{
+  background-color: transparent;
+  color: #fff;
+  border: 0px;
+}
+.modal-content{
+  border-radius: 0px;
+  background-color: #333;
+}

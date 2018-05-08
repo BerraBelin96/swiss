@@ -24,9 +24,11 @@ class PlayersController extends Controller
     	$players = new Player;
     	$this->validate(request(), ['name' => 'required']);
 
-        Player::create(request(['name','tournament']));
+        Player::create(request(['name','tournament'])); 
+        $tournament = request(['tournament']);
+        $tournament = $tournament["tournament"];
 
-    	return back();
+    	return redirect()->route('admin.create', ['tournament' => $tournament]);
     }
 
     public function delete($id)
@@ -132,8 +134,9 @@ class PlayersController extends Controller
         $searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
 
         $players = Player::where('tournament', $tournament)->get();
+        $status = Tournaments::where('id', $tournament)->get();
         
-        return view('testPage.testpage', compact('players', 'tournament', 'searchPlayers'));
+        return view('create', compact('players', 'name', 'tournament', 'searchPlayers', 'status'));
     }
 
     public function setTournament()
@@ -148,6 +151,7 @@ class PlayersController extends Controller
         Player::where('id', $id)->update(['tournament' => $tournament]);
 
         $players = Player::where('tournament', $tournament)->get();
-        return view('testPage.testpage', compact('players', 'tournament'));
+        $status = Tournaments::where('id', $tournament)->get();
+        return view('create', compact('players', 'tournament', 'status'));
     }
 }

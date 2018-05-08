@@ -26,6 +26,8 @@ Route::prefix('admin')->group(function() {
 	Route::get('/create/{tournament}', 'AdminController@createTournaments')->name('admin.create');
 	Route::get('/manage', 'AdminController@manageTournaments')->name('admin.manage');
 	Route::get('/current/{tournament}', 'AdminController@currentTournament')->name('admin.current');
+	Route::post('/searchPlayer', 'PlayersController@search')->name('searchPlayer');
+Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('playerSetTournament');
 });
 
 
@@ -39,8 +41,6 @@ Route::get('/playerUpdateWin/{id}', 'PlayersController@updateWin');
 Route::post('/addname', 'PlayersController@add');
 Route::post('/tournament', 'PlayersController@add');
 Route::post('/playerUpdate', 'PlayersController@update');
-Route::post('/searchPlayer', 'PlayersController@search')->name('searchPlayer');
-Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('playerSetTournament');
 
 // vvv TournamentController vvv
 Route::post('/createTournament', 'TournamentController@create');

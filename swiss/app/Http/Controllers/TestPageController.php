@@ -38,39 +38,39 @@ class TestPageController extends Controller
         // return view('testPage.printGame', compact('players', 'tournament'));
     }
 
-    public function searchPlayer()
-    {
-    	$tournament = request(['tournament']);
-        $tournament = $tournament["tournament"];
-        $name = request(['name']);
-        $name = $name["name"];
-    	// $name = "jo";
-    	// $players = Player::where('tournament', $tournament)->get();
-    	// $players = Player::where('name', 'like', $name)->get();
-    	$searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
+    // public function searchPlayer()
+    // {
+    // 	$tournament = request(['tournament']);
+    //     $tournament = $tournament["tournament"];
+    //     $name = request(['name']);
+    //     $name = $name["name"];
+    // 	// $name = "jo";
+    // 	// $players = Player::where('tournament', $tournament)->get();
+    // 	// $players = Player::where('name', 'like', $name)->get();
+    // 	$searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
 
-    	// ->where('name', 'like', 'T%')
-    	// Where('name', 'like', '%' . Input::get('name') . '%')
-    	// dd($searchPlayers->toArray());
+    // 	// ->where('name', 'like', 'T%')
+    // 	// Where('name', 'like', '%' . Input::get('name') . '%')
+    // 	// dd($searchPlayers->toArray());
 
-    	$players = Player::where('tournament', $tournament)->get();
-        // dd($searchPlayers->toArray());
-        return view('testPage.testpage', compact('players', 'tournament', 'searchPlayers'));
-        // return redirect()->route('formTest', ['tournament' => $tournament]);
-    }
+    // 	$players = Player::where('tournament', $tournament)->get();
+    //     // dd($searchPlayers->toArray());
+    //     return view('testPage.testpage', compact('players', 'tournament', 'searchPlayers'));
+    //     // return redirect()->route('formTest', ['tournament' => $tournament]);
+    // }
 
-    public function playerSetTournament()
-    {
-    	$tournament = request(['tournament']);
-        $tournament = $tournament["tournament"];
-        $id = request(['playerId']);
-        $id = $id["playerId"];
+    // public function playerSetTournament()
+    // {
+    // 	$tournament = request(['tournament']);
+    //     $tournament = $tournament["tournament"];
+    //     $id = request(['playerId']);
+    //     $id = $id["playerId"];
 
-    	Player::where('id', $id)->update(['tournament' => $tournament]);
+    // 	Player::where('id', $id)->update(['tournament' => $tournament]);
 
-    	// return back();
-    	$players = Player::where('tournament', $tournament)->get();
-    	return view('testPage.testpage', compact('players', 'tournament'));
-    }
+    // 	// return back();
+    // 	$players = Player::where('tournament', $tournament)->get();
+    // 	return view('testPage.testpage', compact('players', 'tournament'));
+    // }
     
 }
