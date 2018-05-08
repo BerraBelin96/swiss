@@ -32,11 +32,16 @@
 				</div>
 				<br>
 				@endforeach
-				<button type="submit" name="action" value="Next" class="btn btn-default">Next</button>
-				<button type="submit" name="action" value="End" class="btn btn-default">End</button>
-				<button class="btn btn-default">
+				<button type="submit" name="action" value="Next" class="btn btn-secondary">Next</button>
+				<button type="submit" name="action" value="End" class="btn btn-secondary">End</button>
+				<button class="btn btn-secondary">
 					<a href="{{ URL::to('/reShuffle/'.$tournament) }}">
 					    Reshuffle
+					</a>
+				</button>
+				<button class="btn btn-secondary">
+					<a href="{{ URL::to('/printGame/'.$tournament) }}">
+						Print out
 					</a>
 				</button>
 			</form>
