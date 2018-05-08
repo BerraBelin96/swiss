@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tournaments;
+use App\CurrentGame;
 use App\Player;
 
 class TournamentController extends Controller
