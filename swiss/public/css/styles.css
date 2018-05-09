@@ -191,6 +191,13 @@ span{
   border-bottom: 2px solid rgba(255,255,255,0.2);
   padding: 5px;
 }
+.leaderboard td{
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.leaderboard thead th{
+  border-top: 0px solid rgba(255,255,255,0.2);
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
 .historyFont{
   font-size: 0.5rem;
 }

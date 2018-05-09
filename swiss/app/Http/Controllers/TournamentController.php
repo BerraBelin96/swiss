@@ -35,11 +35,10 @@ class TournamentController extends Controller
     public function stop($tournament)
     {
     	$players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->where('tournament', $tournament)->get();
-
     	Tournaments::where('id', $tournament)->update(['status' => "stopped"]);
-
-    	dd($players->toArray(), $tournament);
-    	return view('', compact('players', 'tournament'));
+        $tournamentName = Tournaments::where('id', $tournament)->get();
+    	// dd($players->toArray(), $tournament);
+    	return view('stopTournament', compact('players', 'tournament', 'tournamentName'));
     }
 
     public function end($tournament)

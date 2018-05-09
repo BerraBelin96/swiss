@@ -87,7 +87,7 @@
 							</div>
 							@endforeach
 							@foreach ($odd as $Odd)
-							<p class="col-md-6">{{ $Odd->p1_name }} is waiting this round!</p>
+							<p class="col-md-6">{{ $Odd->p1_name }} ({{ $Odd->p1_wins }}/{{ $Odd->p1_losses }}) is waiting this round!</p>
 							@endforeach
 						</div>
 					</div>
