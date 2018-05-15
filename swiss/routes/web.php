@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function() {
 	Route::get('/history/{tournament}', 'AdminController@historyTournament');
 	Route::get('/addAdmin', 'AdminController@showAddForm')->name('admin.add');
 	Route::post('/addAdmin', 'AdminController@addAdmin')->name('admin.add.submit');
+	Route::get('/stopTournament/{tournament}', 'AdminController@stop')->name('stopTournament');
 });
 
 
@@ -48,7 +49,6 @@ Route::post('/playerSetTournament', 'PlayersController@setTournament')->name('pl
 
 // vvv TournamentController vvv
 Route::post('/createTournament', 'TournamentController@create');
-Route::get('/stopTournament/{tournament}', 'TournamentController@stop')->name('stopTournament');
 Route::get('/endTournament/{tournament}', 'TournamentController@end')->name('endTournament');
 
 // vvv CurrentGameController vvv

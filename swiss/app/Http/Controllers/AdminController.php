@@ -89,6 +89,14 @@ class AdminController extends Controller
                                     ->get();
         return view('history', compact('gameHistory', 'tournamentName'));
     }
+    public function stop($tournament)
+    {
+        $players = Player::orderBy('wins', 'desc')->orderBy('losses', 'asc')->where('tournament', $tournament)->get();
+        Tournaments::where('id', $tournament)->update(['status' => "stopped"]);
+        $tournamentName = Tournaments::where('id', $tournament)->get();
+        return view('stopTournament', compact('players', 'tournament', 'tournamentName'));
+    }
+
     public function showAddForm()
     {
         return view('auth.admin-register');

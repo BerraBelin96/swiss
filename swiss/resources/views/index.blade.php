@@ -40,6 +40,9 @@
             @if ( $tournaments->status == 'new' )
                 <a class="col-md-12" href="{{ URL::to('admin/create/'.$tournaments->id) }}">
             @endif
+            @if ( $tournaments->status == 'stopped' )
+                <a class="col-md-12" href="{{ URL::to('admin/stopTournament/'.$tournaments->id) }}">
+            @endif
         @endguest
          <div id="tournamentName">
             <span>{{ $tournaments->name }}</span> 
