@@ -131,7 +131,7 @@ class PlayersController extends Controller
         $tournament = $tournament["tournament"];
         $name = request(['name']);
         $name = $name["name"];
-        $searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->get();
+        $searchPlayers = Player::Where('name', 'like', '%' . $name . '%')->where('tournament', NULL)->get();
 
         $players = Player::where('tournament', $tournament)->get();
         $status = Tournaments::where('id', $tournament)->get();
