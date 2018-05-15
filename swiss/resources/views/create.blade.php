@@ -107,7 +107,7 @@
         @if (!count(session('searchPlayers')))
             <p class="text-center">There are no matching players!</p>
         @endif
-        @endif
+        @else
         @foreach ( $recentPlayers as $rPlayers )
             <form method="POST" action="/playerSetTournament">
             {{ csrf_field() }}
@@ -116,6 +116,7 @@
             <button type="submit" class="addName">{{ $rPlayers->name }}</button>
         </form>
         @endforeach
+        @endif
     </div>
     
 </div>

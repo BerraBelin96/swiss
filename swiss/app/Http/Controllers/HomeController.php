@@ -57,11 +57,11 @@ class HomeController extends Controller
                                     ->where('current_games.tournament', '=', $tournament)
                                     ->get();
 
-            $odd = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
-                                        ->select('p1.name as p1_name', 'current_games.playerOne', 'current_games.playerTwo')
-                                        ->where('playerTwo', '=', 0)
-                                        ->where('current_games.tournament', '=', $tournament)
-                                        ->get();
+        $odd = CurrentGame::join('players as p1', 'current_games.playerOne', '=', 'p1.id')
+                            ->select('p1.name as p1_name', 'current_games.playerOne', 'current_games.playerTwo')
+                            ->where('playerTwo', '=', 0)
+                            ->where('current_games.tournament', '=', $tournament)
+                            ->get();
         
         // $CurrentGame = CurrentGame::selectRaw("SELECT
         //     cg.playerOne, cg.playerTwo
