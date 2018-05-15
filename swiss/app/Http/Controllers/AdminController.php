@@ -7,6 +7,7 @@ use App\Player;
 use App\CurrentGame;
 use App\Tournaments;
 use App\GameHistory;
+use App\Admin;
 
 class AdminController extends Controller
 {
@@ -87,5 +88,17 @@ class AdminController extends Controller
                                     ->where('game_histories.tournament', '=', $tournament)
                                     ->get();
         return view('history', compact('gameHistory', 'tournamentName'));
+    }
+    public function showAddForm()
+    {
+        return view('auth.admin-register');
+    }
+    public function addAdmin()
+    {
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password'
+        ]);
     }
 }

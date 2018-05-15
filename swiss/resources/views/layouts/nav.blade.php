@@ -21,6 +21,7 @@
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 					<a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+					<a class="dropdown-item" href="{{ route('admin.add') }}">Add admin</a>
 					<a class="dropdown-item" href="{{ route('logout') }}"
 					onclick="event.preventDefault();
 					document.getElementById('logout-form').submit();">

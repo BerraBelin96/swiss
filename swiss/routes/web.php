@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function() {
 	Route::get('/current/{tournament}', 'AdminController@currentTournament')->name('admin.current');
 	Route::get('/history', 'AdminController@history')->name('admin.history');
 	Route::get('/history/{tournament}', 'AdminController@historyTournament');
+	Route::get('/addAdmin', 'AdminController@showAddForm')->name('admin.add');
+	Route::post('/addAdmin', 'AdminController@addAdmin')->name('admin.add.submit');
 });
 
 

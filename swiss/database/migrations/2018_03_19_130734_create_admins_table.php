@@ -21,6 +21,14 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('admins')->insert(
+        array(
+            'name' => 'Admin',
+            'email' => 'Admin@incrade.com',
+            'password' => Hash::make('password'),
+        )
+    );
     }
 
     /**
