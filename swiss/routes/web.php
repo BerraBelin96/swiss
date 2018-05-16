@@ -33,10 +33,8 @@ Route::prefix('admin')->group(function() {
 	Route::get('/stopTournament/{tournament}', 'AdminController@stop')->name('stopTournament');
 });
 
-
-//Route::get('/admin', 'PlayersController@index');
+// vvv HomeController vvv
 Route::get('/current/{tournament}', 'HomeController@current');
-
 
 // vvv PlayersController vvv
 Route::get('/delete/{id}', 'PlayersController@delete');
@@ -56,17 +54,3 @@ Route::get('/startTournament/{tournament}', 'CurrentGameController@index');
 Route::get('/nextGame/{tournament}', 'CurrentGameController@nextGame')->name('nextGame');
 Route::get('/reShuffle/{tournament}', 'CurrentGameController@reShuffle')->name('reShuffle');
 Route::get('/printGame/{tournament}', 'CurrentGameController@printGame')->name('printGame');
-
-
-
-// vvv TestPageController vvv
-Route::get('/formTest/{tournament}', 'TestPageController@formTest')->name('formTest');
-Route::get('/testPrintGame/{tournament}', 'TestPageController@printGame')->name('testPrintGame');
-Route::get('/testFetch/{tournament}', 'TestPageController@fetch')->name('testFetch');
-
-// vvv DevHelperController vvv 
-Route::prefix('dev')->group(function() {
-	Route::get('/', 'DevHelperController@index');
-	Route::get('/addPlayers/{amount}', 'DevHelperController@addPlayers');
-	Route::get('/empty/{table}', 'DevHelperController@empty');
-});

@@ -6,8 +6,6 @@
         @if (!count($players))
         <p class="text-center">There are currently no players!</p>
         @endif
-            {{-- @foreach($players as $player)   
-            @endforeach --}}
             @if (count($players))
             <div class="row justify-content-center">
                 <p>Total: {{ $players->count() }}</p>
@@ -83,7 +81,7 @@
         </div>
         @endif
         @if (count($players) >= 4)
-        <button class="btn btn-secondary"><a href="{{ URL::to('/startTournament/'.$tournament) }}">Start</a></button>
+            <a class="btn btn-secondary" href="{{ URL::to('/startTournament/'.$tournament) }}">Start</a>
         @endif
         </div>
         <hr>           
@@ -96,7 +94,6 @@
     <div class="col-md-5">
         @if (session('searchPlayers'))
         @foreach (session('searchPlayers') as $key => $sPlayer)
-        {{-- <a href="{{ URL::to('/delete/'.$player->id) }}">{{ $sPlayer->name }}</a> --}}
         <form method="POST" action="/playerSetTournament">
             {{ csrf_field() }}
             <input type="hidden" name="tournament" value="{{ $tournament }}">

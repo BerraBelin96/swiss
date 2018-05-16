@@ -23,7 +23,7 @@
              @include('layouts.errors')
          </form>
          <br>
-         <button type="button" class="btn btn-secondary"><a href="{{ route('admin.history') }}">Tournament history</a></button>
+         <a class="btn btn-secondary" href="{{ route('admin.history') }}">Tournament history</a>
          <hr>
      </div>
  </div>

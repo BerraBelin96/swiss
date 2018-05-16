@@ -63,12 +63,6 @@ class HomeController extends Controller
                             ->where('current_games.tournament', '=', $tournament)
                             ->get();
         
-        // $CurrentGame = CurrentGame::selectRaw("SELECT
-        //     cg.playerOne, cg.playerTwo
-        //     FROM current_games cg
-        //     JOIN players p1 ON p1.name = playerOne
-        //     JOIN players p2 ON p2.name = playerTwo")
-        //     ->get();
         return view('current', compact('CurrentGame', 'players', 'odd', 'tournamentName'));
     }
 }

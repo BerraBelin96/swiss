@@ -5,7 +5,6 @@
 	@else
 	<div>
 		<div id="navbarToggleExternalContent" class="col-md-3 right">
-			{{-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --}}
 			<form method="POST" action="/playerUpdate">
 				{{ csrf_field() }}
 				<input type="hidden" name="tournament" value="{{ $tournament }}">
@@ -34,16 +33,8 @@
 				@endforeach
 				<button type="submit" name="action" value="Next" class="btn btn-secondary">Next</button>
 				<button type="submit" name="action" value="End" class="btn btn-secondary">End</button>
-				<button class="btn btn-secondary">
-					<a href="{{ URL::to('/reShuffle/'.$tournament) }}">
-					    Reshuffle
-					</a>
-				</button>
-				<button class="btn btn-secondary">
-					<a href="{{ URL::to('/printGame/'.$tournament) }}" target="_blank">
-						Print out
-					</a>
-				</button>
+				<a class="btn btn-secondary" href="{{ URL::to('/reShuffle/'.$tournament) }}">Reshuffle</a>
+				<a class="btn btn-secondary" href="{{ URL::to('/printGame/'.$tournament) }}" target="_blank">Print out</a>
 			</form>
 			<br>
 		</div>
@@ -54,7 +45,6 @@
 		</div>
 
 		<!-- Use any element to open the sidenav -->
-		{{-- <span onclick="openNav()">open</span> --}}
 	</div>
 	@endguest
 	<div class="row justify-content-center text-center">

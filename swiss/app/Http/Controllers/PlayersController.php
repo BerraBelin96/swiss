@@ -150,10 +150,7 @@ class PlayersController extends Controller
         $id = $id["playerId"];
 
         Player::where('id', $id)->update(['tournament' => $tournament]);
-
-        $players = Player::where('tournament', $tournament)->get();
-        $status = Tournaments::where('id', $tournament)->get();
-        // return view('create', compact('players', 'tournament', 'status'));
+        
         return redirect()->route('admin.create', ['tournament' => $tournament]);
     }
 }
