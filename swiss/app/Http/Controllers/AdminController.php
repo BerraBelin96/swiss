@@ -79,7 +79,15 @@ class AdminController extends Controller
                                     ->orderBy('game_histories.round', 'asc')
                                     ->where('game_histories.tournament', '=', $tournament)
                                     ->get();
-        return view('history', compact('gameHistory', 'tournamentName'));
+
+        $odd = GameHistory::join('players as p1', 'game_histories.playerOne', '=', 'p1.id')
+                            ->join('players as p3', 'game_histories.winner', '=', 'p3.id')
+                            ->select('p1.name as p1_name', 'game_histories.playerTwo', 'p3.name as p_win', 'game_histories.round', 'game_histories.created_at')
+                            ->orderBy('game_histories.round', 'asc')
+                            ->where('playerTwo', '=', 0)
+                            ->where('game_histories.tournament', '=', $tournament)
+                            ->get();
+        return view('history', compact('gameHistory', 'tournamentName', 'odd'));
     }
     public function stop($tournament)
     {

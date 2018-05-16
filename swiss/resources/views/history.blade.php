@@ -35,6 +35,27 @@
     @endforeach
   </tbody>
 </table>
+@if (count($odd))
+<table class="table historyTable" id="historyTable">
+    <thead>
+        <h2>Players who waited</h2>
+    <tr>
+      <th scope="col">Player</th>
+      <th scope="col">Round</th>
+      <th scope="col">Date/time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    @foreach ($odd as $Odd)
+      <td>{{ $Odd->p1_name }}</td>
+      <td>{{ $Odd->round }}</td>
+      <td>{{ $Odd->created_at->toDateTimeString() }}</td>
+    </tr>
+    @endforeach
+</tbody>
+</table>
+@endif
 </div>
 </div>
  @endsection
